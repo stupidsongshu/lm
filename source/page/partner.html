@@ -1,0 +1,78 @@
+<div class="container-fluid partnerPage">
+	<div class="tableWrapper wrap">
+		<div id="toolbar" class="btn-group">
+		    <button id="addPartner" type="button" class="btn btn-default">添加合作方</button>
+		</div>
+        <table id="table"></table>
+	</div>
+	<div class="editWrapper wrap" data-type="0">
+		<div class="toolsbar">
+			<span class="showPartnerList"><i class="fa fa-arrow-left" aria-hidden="true"></i>返回合作方列表</span>
+		</div>
+		<div class="stepContent">
+			<p class="title" id="addOrModifyPartnerTitle">添加合作方</p>
+			<input type="hidden" id="partnerId"/>
+			<ul>
+				<li>
+					<label for="" class="need col-xs-12 col-sm-3 col-md-2">合作方名称</label>
+					<div class="col-xs-12 col-sm-9 col-md-7">
+						<div class="input">
+							<input type="text" id="companyName" name="companyName" placeholder="合作方名称"/>
+						</div>
+					</div>
+				</li>
+				<li>
+					<label for="" class="col-xs-12 col-sm-3 col-md-2">联系人</label>
+					<div class="col-xs-12 col-sm-9 col-md-7">
+						<div class="input">
+							<input type="text" id="partnerContactName" name="partnerContactName" placeholder="联系人"/>
+						</div>
+					</div>
+				</li>
+				<li>
+					<label for="" class="col-xs-12 col-sm-3 col-md-2">联系电话</label>
+					<div class="col-xs-12 col-sm-9 col-md-7">
+						<div class="input">
+							<input type="text" id="partnerContactMobileNo" name="partnerContactMobileNo" placeholder="联系电话"/>
+						</div>
+					</div>
+				</li>
+				<li>
+					<label for="" class="col-xs-12 col-sm-3 col-md-2">联系邮箱</label>
+					<div class="col-xs-12 col-sm-9 col-md-7">
+						<div class="input">
+							<input type="text" id="partnerContactEmail" name="partnerContactEmail" placeholder="联系邮箱"/>
+						</div>
+					</div>
+				</li>
+				<li id="partnerDomainWrapper">
+					<label for="" class="need col-xs-12 col-sm-3 col-md-2">公司主页</label>
+					<div class="col-xs-12 col-sm-9 col-md-7">
+						<div class="input">
+							<input type="text" id="partnerDomain" name="partnerDomain" placeholder="公司主页"/>
+						</div>
+					</div>
+				</li>
+			</ul>
+			<div class="control-btns">
+				<button class="btn-save" id="savaPartnerInfo">保存</button>
+			</div>
+		</div>
+	</div>
+	<!-- 模态框（Modal） -->
+	<div class="modal fade  bs-example-modal-sm" id="partnerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	    <div class="modal-dialog modal-sm">
+	        <div class="modal-content">
+	            <!-- <div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	                <h4 class="modal-title" id="myModalLabel"></h4>
+	            </div> -->
+	            <div class="modal-body"></div>
+	            <div class="modal-footer">
+	                <button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+	            </div>
+	        </div><!-- /.modal-content -->
+	    </div><!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+</div>

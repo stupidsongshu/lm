@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+  <title>乐贷款</title>
+  <link rel="stylesheet" href="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
+  <link rel="stylesheet" href="../css/shade.css">
+  <link rel="stylesheet" href="../css/detail.css">
+</head>
+<body id="body">
+  <div data-role="page" id="detailPage">
+    <div id="main" data-role="main" class="ui-content">
+      <div class="head">
+      	<span class="back"></span>
+      	<h2 id="headTitle">乐贷款</h2>
+      	<!-- <span class="contact">联系客服</span> -->
+      </div>
+      <div class="points clearfix">
+      	<p class="variable" value="1.1">利率：1.1%-2.3%</p>
+      	<div>
+      		<p>额度：<span class="limitRange">1-10万</span></p>
+      		<p>期限：<span class="timeLimit">365-730天</span></p>
+      	</div>
+      </div>
+      <div class="caculate clearfix">
+      	<div class="display clearfix">
+      		<div>
+	      		<p class="repay">259.5</p>
+	      		<p class="repayText">月还款(元)</p>
+	      	</div>
+	      	<div>
+	      		<p class="totalIntrest">259.5</p>
+	      		<p class="totalIntrestText">总利息(元)</p>
+	      	</div>
+      	</div>
+      	<div class="input">
+      		<div class="limitTime">
+      			<label for="limitTime">期限：</label>
+		        <select name="limitTime" id="limitTime" flag="1">
+		        </select>
+      		</div>
+      		<p class="setLoansText">设置贷款金额(元)：<span class="loanNum"></span></p>
+      		<form>
+	      		<input type="range" name="setLoanNum" id="setLoanNum" value="" min="" max="" step="100" data-highlight="true">
+	    	</form>
+	    	<p class="min-max">
+	    		<span class="min"></span>
+	    		<span class="max"></span>
+	    	</p>
+      	</div>
+      </div>
+      <div class="detail">
+      	<p class="detailTitle">产品详情</p>
+      	<div class="common">
+      		<h4 class="commonTitle one">申请要点</h3>
+      		<div class="oneContent">
+      		</div>
+      	</div>
+      	<div class="common">
+      		<h4 class="commonTitle two">申请流程</h3>
+      		<div class="twoContent">
+      		</div>
+      	</div>
+      	<div class="common">
+      		<h4 class="commonTitle three">申请条件</h3>
+      		<div class="threeContent">
+      		</div>
+      	</div>
+      	<div class="common">
+      		<h4 class="commonTitle four">申请材料</h3>
+      		<div class="fourContent">
+      		</div>
+      	</div>
+      </div>
+      <!-- <a class="apply" href="" target="_self">立即申请</a> -->
+      <!-- <button id="apply">立即申请</button> -->
+      <div data-role="popup" id="dialog" class="ui-content" data-overlay-theme="b">
+          <div class="title">提示</div>
+          <p class="dialog-content">这是对话框对话框内容</p>
+          <div class="btn-group" data-role="controlgroup" data-type="horizontal">
+            <a href="#" class="ui-btn" id="cancel">取消</a>
+            <a href="#" class="ui-btn" id="confirm">确定</a>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+  <script src="../js/shade.js"></script>
+  <script src="../js/detail.js"></script>
+</body>
+</html>

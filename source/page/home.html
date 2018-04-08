@@ -1,0 +1,125 @@
+<div class="homePage container-fluid">
+	<div class="row">
+		<div class="downloadPic wrap col-xs-12 col-sm-9">
+			<h5 class="title">下载情况</h5>
+			<div class="wrap-content pic-view">
+				<div id="lineChart"></div>
+			</div>
+		</div>
+		<div class="dataView col-xs-12 col-sm-3">
+			<div class="visitedData wrap col-xs-12 col-sm-12">
+				<h5 class="title blue">每日浏览数</h5>
+				<div id="visitedSlider" class="carousel slide mySlide">
+					<div class="carousel-inner">
+					</div>
+					<a class="carousel-control left" href="#visitedSlider" data-slide="prev">&lsaquo;</a>
+					<a class="carousel-control right" href="#visitedSlider" data-slide="next">&rsaquo;</a>
+					<ol class="carousel-indicators">
+						<!-- <li data-target="#visitedSlider" data-slide-to="0" class="active"></li>
+						<li data-target="#visitedSlider" data-slide-to="1"></li>
+						<li data-target="#visitedSlider" data-slide-to="2"></li> -->
+					</ol>
+				</div>
+			</div>
+			<div class="applyData wrap col-xs-12 col-sm-12">
+				<h5 class="title red">每日申请数</h5>
+				<div id="appliedSlider" class="carousel slide mySlide">
+					<div class="carousel-inner">
+						<!-- <div class="item active">
+							<p><span class="key">乐贷款</span><span class="value">1234</span></p>
+							<p><span class="key">现金无忧</span><span class="value">2345</span></p>
+							<p><span class="key">2345贷款王</span><span class="value">3456</span></p>
+							<p><span class="key">2345贷款王</span><span class="value">3456</span></p>
+							<p><span class="key">2345贷款王</span><span class="value">3456</span></p>
+						</div>
+						<div class="item">
+							<p><span class="key">乐贷款</span><span class="value">1234</span></p>
+							<p><span class="key">现金无忧</span><span class="value">2345</span></p>
+							<p><span class="key">2345贷款王</span><span class="value">3456</span></p>
+							<p><span class="key">2345贷款王</span><span class="value">3456</span></p>
+							<p><span class="key">2345贷款王</span><span class="value">3456</span></p>
+						</div>
+						<div class="item">
+							<p><span class="key">乐贷款</span><span class="value">1234</span></p>
+							<p><span class="key">现金无忧</span><span class="value">2345</span></p>
+							<p><span class="key">2345贷款王</span><span class="value">3456</span></p>
+							<p><span class="key">2345贷款王</span><span class="value">3456</span></p>
+							<p><span class="key">2345贷款王</span><span class="value">3456</span></p>
+						</div> -->
+					</div>
+					<a class="carousel-control left" href="#appliedSlider" data-slide="prev">&lsaquo;</a>
+					<a class="carousel-control right" href="#appliedSlider" data-slide="next">&rsaquo;</a>
+					<ol class="carousel-indicators">
+						<!-- <li data-target="#appliedSlider" data-slide-to="0" class="active"></li>
+						<li data-target="#appliedSlider" data-slide-to="1"></li>
+						<li data-target="#appliedSlider" data-slide-to="2"></li> -->
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12 col-sm-5">
+			<div class="wrap">
+				<h5 class="title">快速创建</h5>
+				<div class="wrap-content">
+					<p class="btn" id="creatApp"><span class="circle pink"><a href="#app"><i class="fa fa-plus-square-o" aria-hidden="true"></i></a></span>创建应用</p>
+					<p class="btn"><span class="circle purple"><i class="fa fa-file-image-o" aria-hidden="true"></i></span>创建banner</p>
+				</div>
+			</div>
+			<div class="wrap">
+				<h5 class="title">今日任务</h5>
+				<div class="wrap-content">
+					<ul class="task">
+						<li>
+							<span class="select"><i class="fa fa-check-square-o" aria-hidden="true"></i></span>
+							<p class="taskItemContent">今日做完首页今日做完首页今日做完首页今日做完首页今日做完首页今日做完首页今日做完首页今日做完首页今日做完首页今日做完首页今日</p>
+							<p class="action">
+								<span class="like"><i class="fa fa-star" aria-hidden="true"></i></span>
+								<span class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+								<span class="delete"><i class="fa fa-trash" aria-hidden="true"></i></span>
+							</p>
+						</li>
+						<li>
+							<span class="select"><i class="fa fa-check-square-o" aria-hidden="true"></i></span>
+							<p class="taskItemContent">今日做完首页</p>
+							<p class="action">
+								<span class="like"><i class="fa fa-star" aria-hidden="true"></i></span>
+								<span class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+								<span class="delete"><i class="fa fa-trash" aria-hidden="true"></i></span>
+							</p>
+						</li>
+						<li>
+							<span class="select"><i class="fa fa-check-square-o" aria-hidden="true"></i></span>
+							<p class="taskItemContent">今日做完首页</p>
+							<p class="action">
+								<span class="like"><i class="fa fa-star" aria-hidden="true"></i></span>
+								<span class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+								<span class="delete"><i class="fa fa-trash" aria-hidden="true"></i></span>
+							</p>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="wrap col-xs-12 col-sm-7">
+			<h5 class="title">消息</h5>
+			<div class="wrap-content">
+				<ul class="message">
+					<li class="active"><p>今天注册人数破万</p><span><i class="fa fa-clock-o" aria-hidden="true"></i>09:26:11</span></li>
+					<li><p>今天注册人数破万今天注册人数破万今天注册人数破万今天注册人数破万今天注册人数破万</p><span><i class="fa fa-clock-o" aria-hidden="true"></i>09:26:11</span></li>
+					<li><p>今天注册人数破万</p><span><i class="fa fa-clock-o" aria-hidden="true"></i>09:26:11</span></li>
+					<li><p>今天注册人数破万</p><span><i class="fa fa-clock-o" aria-hidden="true"></i>09:26:11</span></li>
+					<li><p>今天注册人数破万</p><span><i class="fa fa-clock-o" aria-hidden="true"></i>09:26:11</span></li>
+					<li><p>今天注册人数破万</p><span><i class="fa fa-clock-o" aria-hidden="true"></i>09:26:11</span></li>
+					<li><p>今天注册人数破万</p><span><i class="fa fa-clock-o" aria-hidden="true"></i>09:26:11</span></li>
+					<li><p>今天注册人数破万</p><span><i class="fa fa-clock-o" aria-hidden="true"></i>09:26:11</span></li>
+					<li><p>今天注册人数破万</p><span><i class="fa fa-clock-o" aria-hidden="true"></i>09:26:11</span></li>
+					<li><p>今天注册人数破万</p><span><i class="fa fa-clock-o" aria-hidden="true"></i>09:26:11</span></li>
+					<li><p>今天注册人数破万</p><span><i class="fa fa-clock-o" aria-hidden="true"></i>09:26:11</span></li>
+					<li><p>今天注册人数破万</p><span><i class="fa fa-clock-o" aria-hidden="true"></i>09:26:11</span></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

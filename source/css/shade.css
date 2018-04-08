@@ -1,0 +1,74 @@
+#dialog{
+	padding: 0;
+}
+/* #dialog-screen{display: none;}
+#dialog-screen+#dialog-popup{display: none;}
+#dialog-screen.none+#dialog-popup{display: block;} */
+#dialog>p{
+	padding: 1rem;
+	text-align: center;
+}
+#dialog>.title{
+	background: linear-gradient(rgb(52, 246, 143),rgb(13, 206, 104));
+	padding: 0.3rem 0.5rem 0.5rem;
+	color: #fff;
+	text-shadow: none;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	box-shadow: 0 0 1px 1px rgb(52, 246, 143);
+}
+#dialog>.btn-group{
+	width: 100%;
+	background: rgb(246, 246, 246);
+	margin:0;
+	padding: 0;
+}
+#dialog>.btn-group>a{
+	display: inline-block;
+	width: 50%;
+	padding: 0.5rem 0;
+	border:none;
+	text-shadow: none;
+	font-weight: normal;
+	margin:0;
+}
+#dialog>.btn-group>.cancel{
+	background: linear-gradient(rgb(245,245,245),rgb(200,200,200));
+	color:rgb(160,160,160);
+}
+#dialog>.btn-group>.confirm{
+	background: linear-gradient(rgb(55, 249, 146),rgb(8, 202, 99));
+	color: #fff;
+}
+#dialog>.btn-group>.single{
+	position: relative;
+	left: 25%;
+}
+.ui-loader{top: 0;}
+.ui-loader>img{width: 100%;height: 100%;}
+.ui-loader-default{
+	width: 100%;
+	height: 100%;
+	opacity: 1;
+	position: absolute;*/
+	top:0;
+	left: 0;
+	margin-left: 0;
+	margin-top: 0;
+}
+.ui-loader-default>img{
+	width: 5rem;
+	height: 5rem;
+	top: 40%;
+	left: 40%;
+	position: relative;
+}
+.ui-loader-verbose{
+	width: 5rem;
+	height: 5rem;
+	left: 64%;
+	background: rgb(50,50,50);
+	color: #fff;
+	text-shadow: none;
+}
+.ui-loader-verbose>h1{font-weight: normal;}

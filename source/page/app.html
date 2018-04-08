@@ -1,0 +1,561 @@
+<div class="container-fluid appPage">
+	<div class="tableWrapper wrap">
+		<div id="toolbar" class="btn-group">
+		    <button id="getOnLine" type="button" class="btn btn-default">已上线</button>
+		    <button id="getOffLine" type="button" class="btn btn-default">未上线</button>
+		    <button id="addApp" type="button" class="btn btn-default">添加应用</button>
+		</div>
+        <table id="table"></table>
+	</div>
+	<div class="editWrapper wrap" data-type="0">
+		<div class="toolsbar">
+			<span class="showAppList"><i class="fa fa-arrow-left" aria-hidden="true"></i>返回应用列表</span>
+		</div>
+		<ul class="progressView">
+			<li data-target="step1" class="first active current-step">
+				<div>
+					<p>1</p>
+					<p>创建应用</p>
+				</div>
+			</li>
+			<li data-target="step2" class="">
+				<span></span>
+				<div>
+					<p>2</p>
+					<p>完善信息</p>
+				</div>
+			</li>
+			<li data-target="step3" class="last">
+				<span></span>
+				<div>
+					<p>3</p>
+					<p>提交审核</p>
+				</div>
+			</li>
+		</ul>
+		<div class="steps">
+			<div id="step1" class="step1">
+				<div class="stepContent step1Content">
+					<p class="title"><span class="red">基本信息</span></p>
+					<ul>
+						<li>
+							<label for="" class="need col-xs-12 col-sm-3 col-md-2">产品名称</label>
+							<div class="col-xs-12 col-sm-9 col-md-7">
+								<div class="input">
+									<input type="text" id="productName" name="productName" placeholder="产品名称"/>
+									<!-- <span><i class="fa fa-check-circle" aria-hidden="true"></i></span> -->
+								</div>
+								<p>已签署合同或已上线产品不能修改产品名称</p>
+							</div>
+						</li>
+						<li>
+							<label for="" class="need col-xs-12 col-sm-3 col-md-2">产品包名</label>
+							<div class="col-xs-12 col-sm-9 col-md-7">
+								<div class="input">
+									<input type="text" id="productPackageName" name="productPackageName" placeholder="产品包名"/>
+								</div>
+							</div>
+						</li>
+						<li>
+							<label for="" class="need col-xs-12 col-sm-3 col-md-2">产品二级标题</label>
+							<div class="col-xs-12 col-sm-9 col-md-7">
+								<div class="input">
+									<input type="text" id="productSubTitle" name="productSubTitle" placeholder="产品二级标题" />
+								</div>
+							</div>
+						</li>
+						<li>
+							<label for="" class="need col-xs-12 col-sm-3 col-md-2">产品提供方</label>
+							<div class="col-xs-12 col-sm-9 col-md-7">
+								<div class="input">
+									<select name="partnerId" id="partnerId">
+									</select>
+								</div>
+							</div>
+						</li>
+						<li>
+							<label for="" class="need col-xs-12 col-sm-3 col-md-2">产品类型</label>
+							<div class="col-xs-12 col-sm-9 col-md-7">
+								<div class="input">
+									<select name="productType" id="productType">
+										<option value="1">现金贷</option>
+										<option value="2">还信用卡</option>
+										<option value="3">企业贷</option>
+										<option value="4">车贷</option>
+									</select>
+								</div>
+							</div>
+						</li>
+						<!-- <li>
+							<label for="" class="need col-xs-12 col-sm-3 col-md-2">产品额度区间</label>
+							<div class="col-xs-12 col-sm-9 col-md-7">
+								<div class="input">
+									<input type="text" id="creLineRangeEx" name="creLineRangeEx" placeholder="产品额度区间"/>
+								</div>
+							</div>
+						</li>
+						<li>
+							<label for="" class="need col-xs-12 col-sm-3 col-md-2">产品利率说明</label>
+							<div class="col-xs-12 col-sm-9 col-md-7">
+								<div class="input">
+									<input type="text" id="interestRateEx" name="interestRateEx" placeholder="产品利率说明"/>
+								</div>
+							</div>
+						</li> -->
+						<li>
+							<label for="" class="need col-xs-12 col-sm-3 col-md-2">H5注册链接</label>
+							<div class="col-xs-12 col-sm-9 col-md-7">
+								<div class="input">
+									<input type="text" name="h5ApplyUrl" id="h5ApplyUrl">
+								</div>
+							</div>
+						</li>
+						<li class="text-center">
+							<button class="btn btn-primary btn-createApp" style="float: none;">创建合作产品</button>
+						</li>
+					</ul>
+				</div>
+				<div class="stepContent">
+					<p class="title"><span class="blue">图标与安装包</span></p>
+					<ul>
+						<li>
+							<label for="" class="need col-xs-12 col-sm-3 col-md-2">上传图标</label>
+							<div class="col-xs-12 col-sm-9 col-md-7">
+								<div class="img_upload">
+									<a href="javascript:;" class="select_img">
+										<i class="fa fa-plus" aria-hidden="true"></i>
+										<input type="file" name="cacheImgFile" id="imgFile" />
+									</a>
+									<div class="drop_area" id="drap_img">将图片拖到这上传</div>
+								</div>
+								<div class="img_info">
+									<img id="smallImg" src="" alt=""/>
+									<div>
+										<p>文件名称：<span class="img_name"></span></p>
+										<p>上传进度：<span class="img_progress"></span></p>
+									</div>
+									<input type="hidden" name="productIconPath" id="productIconPath" />
+								</div>
+							</div>
+						</li>
+						<li style="display: none">
+							<label for="" class="need col-xs-12 col-sm-3 col-md-2">上传安装包</label>
+							<div class="col-xs-12 col-sm-9 col-md-7">
+								<div class="img_upload">
+									<a href="javascript:;" class="select_img">
+										<i class="fa fa-plus" aria-hidden="true"></i>
+										<input type="file" name="cacheApkFile" id="apkFile" />
+									</a>
+									<div class="drop_area" id="drap_apk">将文件拖到这上传</div>
+								</div>
+								<div class="img_info">
+									<div>
+										<p>文件名称：<span class="apk_name"></span></p>
+										<p>上传进度：<span class="apk_progress"></span></p>
+									</div>
+									<input type="hidden" name="productApkPath" id="productApkPath" />
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<!-- <div class="stepContent">
+					<p class="title"><span class="green">评分及其他</span></p>
+					<ul>
+						<li>
+							<label for="" class="need col-xs-12 col-sm-4 col-md-2">产品上线排名得分</label>
+							<div class="col-xs-12 col-sm-8 col-md-5">
+								<div class="input">
+									<input type="text" id="scoreRank" name="scoreRank" placeholder="最高得分100分" class="checkInput" />
+									<span>分</span>
+								</div>
+							</div>
+						</li>
+						<li>
+							<label for="" class="col-xs-12 col-sm-4 col-md-2">申请条件评分</label>
+							<div class="col-xs-12 col-sm-8 col-md-5">
+								<div class="input">
+									<input type="text" id="requireScore" name="requireScore" placeholder="最高得分100分" class="checkInput"/>
+									<span>分</span>
+								</div>
+							</div>
+						</li>
+						<li>
+							<label for="" class="col-xs-12 col-sm-4 col-md-2">利率得分</label>
+							<div class="col-xs-12 col-sm-8 col-md-5">
+								<div class="input">
+									<input type="text" id="interestRateScore" name="interestRateScore" placeholder="最高得分100分" class="checkInput"/>
+									<span>分</span>
+								</div>
+							</div>
+						</li>
+						<li>
+							<label for="" class="col-xs-12 col-sm-4 col-md-2">通过率</label>
+							<div class="col-xs-12 col-sm-8 col-md-5">
+								<div class="input">
+									<input type="text" id="throughRate" name="throughRate" class="checkInput"/>
+									<span>%</span>
+								</div>
+							</div>
+						</li>
+						<li>
+							<label for="" class="need col-xs-12 col-sm-4 col-md-2">初始查看人数</label>
+							<div class="col-xs-12 col-sm-8 col-md-5">
+								<div class="input">
+									<input type="text" id="visitNum" name="visitNum" class="checkInput"/>
+									<span>人</span>
+								</div>
+							</div>
+						</li>
+						<li>
+							<label for="" class="need col-xs-12 col-sm-4 col-md-2">初始申请人数</label>
+							<div class="col-xs-12 col-sm-8 col-md-5">
+								<div class="input">
+									<input type="text" id="loanNum" name="loanNum" class="checkInput"/>
+									<span>人</span>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div> -->
+				<div class="stepContent">
+					<p class="title"><span class="red">利率分期额度</span></p>
+					<ul>
+						<li>
+							<label for="" class="need col-xs-12 col-sm-3 col-md-2">产品最小额度</label>
+							<div class="col-xs-12 col-sm-9 col-md-7">
+								<div class="input">
+									<input type="number" name="minCreLine" id="minCreLine">
+								</div>
+							</div>
+						</li>
+						<li>
+							<label for="" class="need col-xs-12 col-sm-3 col-md-2">产品最大额度</label>
+							<div class="col-xs-12 col-sm-9 col-md-7">
+								<div class="input">
+									<input type="number" name="maxCreLine" id="maxCreLine">
+								</div>
+							</div>
+						</li>
+						<li>
+							<label for="" class="need col-xs-12 col-sm-3 col-md-2">产品利率类型</label>
+							<div class="col-xs-12 col-sm-9 col-md-7">
+								<div class="input" id="interestRateType">
+									<button value="0">日</button>
+									<button value="1">月</button>
+									<button value="2">年</button>
+								</div>
+							</div>
+						</li>
+						<li>
+							<label for="" class="need col-xs-12 col-sm-3 col-md-2">产品利率</label>
+							<div class="col-xs-12 col-sm-9 col-md-7">
+								<div class="input">
+									<input type="number" name="interestRate" id="interestRate">
+								</div>
+							</div>
+						</li>
+						<li>
+							<label for="" class="need col-xs-12 col-sm-3 col-md-2">产品分期类型</label>
+							<div class="col-xs-12 col-sm-9 col-md-7">
+								<div class="input" id="instalType">
+									<button value="0">日</button>
+									<button value="1">月</button>
+									<button value="2">年</button>
+								</div>
+							</div>
+						</li>
+						<!-- <li>
+							<label for="" class="need col-xs-12 col-sm-3 col-md-2">产品分期间隔</label>
+							<div class="col-xs-12 col-sm-9 col-md-7">
+								<div class="input">
+									<input type="text" name="instalCycles" id="instalCycles">
+								</div>
+							</div>
+						</li> -->
+						<li>
+							<label for="" class="need col-xs-12 col-sm-3 col-md-2">产品分期期数</label>
+							<div class="col-xs-12 col-sm-9 col-md-7">
+								<div class="input">
+									<input type="text" name="instalPeriodList" id="instalPeriodList" placeholder="以英文逗号分隔">
+								</div>
+							</div>
+						</li>
+						<!-- <li>
+							<label for="" class="need col-xs-12 col-sm-3 col-md-2">产品额度类型</label>
+							<div class="col-xs-12 col-sm-9 col-md-7">
+								<div class="input radio">
+									<input checked="true" type="radio" name="creLineType" id="creLineType1" value="0" />
+									<label for="creLineType1">不变</label>
+									<input type="radio" name="creLineType" id="creLineType2" value="1"/>
+									<label for="creLineType2">可变</label>
+								</div>
+							</div>
+						</li> -->
+						<li>
+							<label for="" class="need col-xs-12 col-sm-3 col-md-2">分期归还类型</label>
+							<div class="col-xs-12 col-sm-9 col-md-7">
+								<div class="input radio">
+									<input type="radio" name="instalReturnType" id="instalReturnType1" value="0" />
+									<label for="instalReturnType1">一次性归还</label>
+									<input type="radio" name="instalReturnType" id="instalReturnType2" value="1"/>
+									<label for="instalReturnType2">按分分期类型归还</label>
+								</div>
+							</div>
+						</li>
+						<li class="text-center">
+							<button class="btn btn-primary btn-updateFee" style="float: none;">保存</button>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div id="step2" class="step2"  style="display: none;">
+				<input type="hidden" id="productId"/>
+				<div class="stepContent">
+					<p class="title"><span class="yellow">产品特性</span></p>
+					<ul>
+						<li>
+							<label for="" class="col-xs-12 col-sm-4 col-md-2">产品最佳特性标签</label>
+							<div class="col-xs-12 col-sm-8 col-md-10 input" id="character_label_list">
+								<div class="input">
+									<!-- <input type="text" id="featureLabel" name="featureLabel" placeholder="填写标签"/> -->
+								</div>
+								<div id="select_character_label_Result"></div>
+							</div>
+						</li>
+						<!-- <li>
+							<label for="" class="need col-xs-12 col-sm-4 col-md-2">产品特性关键字</label>
+							<div class="col-xs-12 col-sm-8 col-md-7">
+								<div class="input keyInput">
+									<div class="inputContent keyContent" id="featureKeywords">
+									</div>
+									<input type="text" id="productKeywordInput" name="productKeywordInput" placeholder="填写关键字" class="keywordInput" />
+									<span class="productKeywordAdd"><i class="fa fa-plus-circle"></i></span>
+								</div>
+							</div>
+						</li> -->
+						<li>
+							<label for="" class="col-xs-12 col-sm-4 col-md-2">产品适用人群</label>
+							<div class="col-xs-12 col-sm-8 col-md-7">
+								<div class="input" id="suitableRole">
+									<!-- <button value="all">全适用</button>
+									<button value="student">学生</button>
+									<button value="officialWorker">工薪族</button>
+									<button value="professional">自由职业</button> -->
+								</div>
+								<div id="select_suit_role_Result"></div>
+							</div>
+						</li>
+						<li>
+							<label for="" class="col-xs-12 col-sm-4 col-md-2">产品推荐星数</label>
+							<div class="col-xs-12 col-sm-8 col-md-7">
+								<div class="input star" id="recommendStar">
+									<i class="fa fa-star-o" value='0'></i>
+									<i class="fa fa-star-o" value='0'></i>
+									<i class="fa fa-star-o" value='0'></i>
+									<i class="fa fa-star-o" value='0'></i>
+									<i class="fa fa-star-o" value='0'></i>
+								</div>
+							</div>
+						</li>
+						<li>
+							<label for="" class="col-xs-12 col-sm-4 col-md-2">产品特性状态</label>
+							<div class="col-xs-12 col-sm-8 col-md-7">
+								<div class="input" id="featureState">
+									<button value="hot">HOT</button>
+									<button value="fast">FAST</button>
+									<button value="low">LOW</button>
+									<button value="none">NONE</button>
+								</div>
+							</div>
+						</li>
+						<li class="text-center">
+							<button style="float: none;" class="btn btn-primary btn-updateCharacter">保存</button>
+						</li>
+					</ul>
+				</div>
+				<div class="stepContent">
+					<p class="title"><span class="blue">申请信息</span></p>
+					<ul>
+						<!-- <li>
+							<label for="" class="need col-xs-12 col-sm-3 col-md-2">产品申请流程</label>
+							<div class="col-xs-12 col-sm-9 col-md-7">
+								<div class="selectHolder">
+									<p class="selectInput" isShow="false">选择流程步骤</p>
+									<ul class="selectOptions">
+										<li value="1" class="">1.手机认证</li>
+										<li value="2">2.个人信息</li>
+										<li value="3">3.身份认证</li>
+										<li value="4">4.活体识别</li>
+										<li value="5">5.银行卡绑定</li>
+										<li value="6">6.运营商授权</li>
+										<li value="7">7.单位信息</li>
+										<li value="8">8.联系人信息</li>
+										<li value="9">9.视频录制</li>
+										<li value="10">10.芝麻授权</li>
+										<li value="11">11.信用加分</li>
+										<li value="12">12.等待放款</li>
+									</ul>
+								</div>
+								<div class="selectResult" id="applyProcess">
+								</div>
+							</div>
+						</li> -->
+						<li>
+							<label for="" class="need col-xs-12 col-sm-3 col-md-2">产品申请流程</label>
+							<div class="col-xs-12 col-sm-9 col-md-10">
+								<div class="select-apply-process">
+									<span value="1">
+										<img src="source/image/app/process/1.png" alt="">
+									</span>
+									<span value="2">
+										<img src="source/image/app/process/2.png" alt="">
+									</span>
+									<span value="3">
+										<img src="source/image/app/process/3.png" alt="">
+									</span>
+									<span value="4">
+										<img src="source/image/app/process/4.png" alt="">
+									</span>
+									<span value="5">
+										<img src="source/image/app/process/5.png" alt="">
+									</span>
+									<span value="6">
+										<img src="source/image/app/process/6.png" alt="">
+									</span>
+									<span value="7">
+										<img src="source/image/app/process/7.png" alt="">
+									</span>
+									<span value="8">
+										<img src="source/image/app/process/8.png" alt="">
+									</span>
+									<span value="9">
+										<img src="source/image/app/process/9.png" alt="">
+									</span>
+									<span value="10">
+										<img src="source/image/app/process/10.png" alt="">
+									</span>
+									<span value="11">
+										<img src="source/image/app/process/11.png" alt="">
+									</span>
+									<span value="12">
+										<img src="source/image/app/process/12.png" alt="">
+									</span>
+								</div>
+								<div class="selectResult" id="applyProcess"></div>
+							</div>
+						</li>
+						<li>
+							<label for="" class="need col-xs-12 col-sm-3 col-md-2">产品申请条件</label>
+							<div class="col-xs-12 col-sm-9 col-md-10">
+								<div class="input keyInput">
+									<div class="inputContent keyContent" id="applyKeywords">
+									</div>
+									<input type="text" id="productKeywordInput" name="productKeywordInput" placeholder="填写关键字" class="keywordInput" />
+									<span class="productKeywordAdd"><i class="fa fa-plus-circle"></i></span>
+								</div>
+							</div>
+						</li>
+						<li>
+							<label for="" class="need col-xs-12 col-sm-3 col-md-2">产品申请材料</label>
+							<div class="col-xs-12 col-sm-9 col-md-10">
+								<div class="input keyInput">
+									<div class="inputContent keyContent" id="applyRequire">
+									</div>
+									<input type="text" id="productKeywordInput" name="productKeywordInput" placeholder="填写关键字" class="keywordInput" />
+									<span class="productKeywordAdd"><i class="fa fa-plus-circle"></i></span>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<!-- <div class="stepContent">
+					<p class="title"><span class="yellow">链接及其他</span></p>
+					<ul>
+						<li>
+							<label for="" class="need col-xs-12 col-sm-3 col-md-2">H5注册链接</label>
+							<div class="col-xs-12 col-sm-9 col-md-7">
+								<div class="input">
+									<input type="text" name="h5ApplyUrl" id="h5ApplyUrl">
+								</div>
+							</div>
+						</li>
+						<li>
+							<label for="" class="col-xs-12 col-sm-3 col-md-2">H5申请攻略</label>
+							<div class="col-xs-12 col-sm-9 col-md-7">
+								<div class="input">
+									<input type="text" name="applyStrategy" id="applyStrategy">
+								</div>
+							</div>
+						</li>
+						<li>
+							<label for="" class="col-xs-12 col-sm-3 col-md-2">平均审核时长</label>
+							<div class="col-xs-12 col-sm-9 col-md-7">
+								<div class="input">
+									<input type="text" name="averageAuditTime" id="averageAuditTime">
+								</div>
+							</div>
+						</li>
+						<li>
+							<label for="" class="col-xs-12 col-sm-3 col-md-2">平均放款时长</label>
+							<div class="col-xs-12 col-sm-9 col-md-7">
+								<div class="input">
+									<input type="text" name="averageAdvanceTime" id="averageAdvanceTime">
+								</div>
+							</div>
+						</li>
+						<li>
+							<label for="" class="need col-xs-12 col-sm-3 col-md-2">产品描述</label>
+							<div class="col-xs-12 col-sm-9 col-md-7">
+								<div class="input">
+									<textarea rows="3" cols="50" id="productDescription"></textarea>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div> -->
+			</div>
+			<div id="step3" class="step3" style="display: none;">
+				<div class="stepContent">
+					<p class="title"><span class="red">效果预览</span></p>
+					<ul class="iframeWrapper">
+						<li>
+							<iframe src="source/page/template_1.html" frameborder="0" width="500" height="200" align="center"></iframe>
+						</li>
+						<li>
+							<iframe src="source/page/template_2.html" frameborder="0" width="500" height="500" align="center"></iframe>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="btnGroup">
+			<div class="agreenment">
+				<input type="checkbox" name="agree1" id="agree1"/>
+				<label for="agree1">同意平台为我们产品提供</label>
+				<span>《最终用户协议》</span>
+			</div>
+			<div class="control-btns">
+				<button class="btn-prev">上一步</button>
+				<!-- <button class="btn-save">保存</button> -->
+				<button class="btn-next">下一步</button>
+			</div>
+		</div>
+	</div>
+	<!-- 模态框（Modal） -->
+	<div class="modal fade  bs-example-modal-sm" id="appModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	    <div class="modal-dialog modal-sm">
+	        <div class="modal-content">
+	            <!-- <div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	                <h4 class="modal-title" id="myModalLabel"></h4>
+	            </div> -->
+	            <div class="modal-body"></div>
+	            <div class="modal-footer">
+	                <button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+	            </div>
+	        </div><!-- /.modal-content -->
+	    </div><!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+</div>

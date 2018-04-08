@@ -1,0 +1,277 @@
+li{list-style: none;}
+ul,p,h2,
+#detailPage #main{
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	position: relative;
+}
+.clearfix{zoom: 1;}
+.clearfix:after{
+	content: "";
+	height: 0;
+	display: block;
+	clear:both;
+	visibility: hidden;
+}
+html{background: rgb(56,78,98)}
+#body{
+	max-width: 400px;
+	margin:0 auto;
+	position: relative;
+	top: 0;
+}
+
+#body.popActive{
+	height: 100%;
+	overflow:hidden;
+}
+#detailPage{
+	background: #EDFAEE url(../image/detail/bg.png) no-repeat;
+	background-size: 100% auto;
+	padding-bottom: 4.5rem;
+}
+.head{
+	width: 100%;
+	position: relative;
+	height: 2.5rem;
+	color: #fff;
+	font-weight: normal;
+	text-shadow: none;
+	margin-top:1.5rem;
+}
+.head>h2{
+	text-align: center;
+	font-size: 1.5rem;
+	line-height: 2.5rem;
+	font-weight: normal;
+}
+.head>span{position: absolute;top: 0.5rem;}
+.head>.back{
+	left:1rem;
+	display: inline-block;
+	width: 2rem;
+	height: 2rem;
+	background: url(../image/detail/back.png) no-repeat;
+	background-position: center 0;
+	background-size: 40%;
+}
+.head>.contact{
+	right: 1rem;
+	font-size: 0.8rem;
+	background: #fff;
+	border-radius: 0.2rem;
+	color: #5bb464;
+	padding: 0.2rem 0.5rem;
+}
+.points{
+	width: 84%;
+	margin:1rem auto;
+	color:#fff;
+	text-shadow: none;
+}
+.points .variable{margin:0.5rem 0;}
+.points>div>p{width: 50%;white-space: nowrap;}
+.points>div>p:nth-child(1){float: left;}
+.points>div>p:nth-child(2){float: right;text-align: right;}
+.caculate{
+	width: 86%;
+	margin: 1.5rem auto 1rem;
+	padding-bottom: 0.5rem;
+	background: #fff;
+	box-shadow: 0 0 10px 0 rgb(169, 190, 170);
+}
+.caculate>.display>div{
+	width: 50%;
+	float: left;
+	text-align: center;
+	margin: 1.5rem 0;
+}
+.caculate>.display>div:nth-child(1){
+	border-right: 1px solid #ccc;
+	margin-right: -1px;
+}
+.caculate>.display>div>p:nth-child(1){
+	margin-bottom: 0.5rem;
+	color: #46ae46;
+}
+.caculate>.display>div>p:last-child{font-size: 0.8rem;}
+.caculate>.display>div>p:first-child{font-size: 1.4rem;}
+.caculate>.input>div{
+	height: 2.6rem;
+	width: 90%;
+	margin:0 auto 0.5rem;
+	border:1px solid #ccc;
+	border-radius: 3px;
+	box-shadow: 0 0 2px 0 #ccc inset;
+}
+/* .detail{padding: 0 0.5rem 1rem;} */
+.detail>.detailTitle{
+	text-align: center;
+	color: #46ae46;
+	font-size: 1.2rem;
+	width: 35%;
+	margin:0 auto 2rem;
+	padding-bottom: 0.3rem;
+	border-bottom: 1px solid #46ae46;
+	position: relative;
+}
+.detail>.detailTitle:after{
+	display: block;
+	content: "";
+	height: 0;
+	width: 0;
+	border-right: 0.5rem solid transparent;
+	border-top: 0.6rem solid #46ae46;
+	border-left: 0.5rem solid transparent;
+	position: absolute;
+	bottom: -0.6rem;
+	left:44%;
+}
+.detail>.common{
+	border-bottom:5px solid rgb(230,230,230);
+	padding: 0 1rem 1rem;
+}
+.detail>.common>.one{background: url(../image/detail/applyPoints.png) no-repeat;}
+.detail>.common>.two{background: url(../image/detail/applyProcess.png) no-repeat;}
+.detail>.common>.three{background: url(../image/detail/applyIf.png) no-repeat;}
+.detail>.common>.four{background: url(../image/detail/applyMaterial.png) no-repeat;}
+.detail>.common>.commonTitle{
+	font-size: 1rem;
+	font-weight: normal;
+	padding-left: 1.5rem;
+	background-size: auto 90%;
+	margin-bottom: 0.5rem;
+	margin-top: 0.5rem;
+}
+.detail>.common>.oneContent>span{
+	color: #46ae46;
+	padding: 0.1rem 0.3rem;
+	border: 1px solid #46ae46;
+	font-size: 0.8rem;
+	margin-right: 2px;
+}
+.detail>.common>div{color:#999;}
+.twoContent>span{
+	display: inline-block;
+	width: 14%;
+	background: url(../image/detail/right.png) no-repeat;
+	padding-right: 1.1rem;
+	background-position: right 30%;
+	background-size: 30%;
+}
+.twoContent>span:last-child{background:none;padding-right: 0;}
+.twoContent>span>img{width: 100%;height: auto;}
+#detailPage .apply{
+	text-decoration: none;
+	color:#fff;
+	background: #46ae46;
+	display: block;
+	width: 100%;
+	height: 4rem;
+	line-height: 4rem;
+	text-align: center;
+	text-shadow: none;
+	font-weight: normal;
+	position: fixed;
+	bottom: 0;
+}
+#body>#detailPage #apply{
+	background: #46AE46;
+	color:#fff;
+	height: 4rem;
+	width: 100%;
+	max-width: 400px;
+	position: fixed;
+	bottom: 0;
+	margin:0;
+	font-weight: normal;
+	-webkit-text-shadow: none;
+	-moz-text-shadow: none;
+	-o-text-shadow: none;
+	text-shadow: none;
+	font-size: 1.4rem;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	-o-border-radius: 0;
+	border-radius: 0;
+}
+#detailPage .input>form{width: 92%;margin:1rem auto 0;}
+#detailPage .input input[type=number]{display: none;}
+.ui-slider-track{margin-left: 0;margin-right: 0;height: 0.3rem;}
+#detailPage .input .ui-btn.ui-slider-handle{border-radius: 50%;}
+.input>.limitTime>label{
+	height: 100%;
+	display: inline-block;
+	margin: 0;
+	padding-left: 0.5rem;
+	line-height: 2.6rem;
+}
+.input>.limitTime>.ui-select{margin: 0;float: right;height: 97%;}
+.input>.limitTime>.ui-select>div{
+	padding:0 4rem 0 2rem;
+	height: 100%;
+	box-shadow: none;
+	line-height: 2.6rem;
+	background: transparent;
+	border: none;
+}
+.input>.limitTime>.ui-select>div>span{font-weight: normal;text-shadow: none;}
+#detailPage .ui-select .ui-btn select{height: 100%;}
+.min-max,.setLoansText{width: 90%;margin:0 auto;font-size: 0.8rem;}
+.ui-page-theme-a .ui-slider-track .ui-btn-active{background: #46ae46;}
+.setLoansText{margin-top: 1rem;}
+.min{float: left;}
+.max{float: right;}
+.loanNum{color: #46ae46;}
+
+#dialog{
+	padding: 0;
+}
+#dialog>p{
+	padding: 1rem;
+	text-align: center;
+}
+#dialog>.title{
+	background: linear-gradient(rgb(52, 246, 143),rgb(13, 206, 104));
+	padding: 0.3rem 0.5rem 0.5rem;
+	color: #fff;
+	text-shadow: none;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	box-shadow: 0 0 1px 1px rgb(52, 246, 143);
+}
+#dialog>.btn-group{background: rgb(246, 246, 246);margin:0;}
+#dialog>.btn-group>div{width: 100%;}
+#dialog>.btn-group>div>a{
+	width: 50%;
+	padding: 0.5rem 0;
+	border:none;
+	text-shadow: none;
+	font-weight: normal;
+}
+#dialog>.btn-group>div>.ui-first-child{
+	background: linear-gradient(rgb(245,245,245),rgb(200,200,200));
+	color:rgb(160,160,160);
+}
+#dialog>.btn-group>div>.ui-last-child{
+	background: linear-gradient(rgb(55, 249, 146),rgb(8, 202, 99));
+	color: #fff;
+}
+#dialog>.btn-group>div>.ui-first-child.ui-last-child{
+	position: relative;
+	left: 25%;
+}
+.ui-loader-verbose{
+	width: 5rem;
+	height: 5rem;
+	left: 64%;
+	background: rgb(50,50,50);
+	color: #fff;
+	text-shadow: none;
+}
+.ui-loader-verbose>h1{font-weight: normal;}
+@media screen and (max-width: 768px){
+	#body,#body>#detailPage{max-width: 100%;}
+	#body>#detailPage #apply{max-width: 100%;}
+}

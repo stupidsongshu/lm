@@ -1,0 +1,96 @@
+<div class="container-fluid bannerPage">
+	<div class="tableWrapper wrap">
+		<div id="toolbar" class="btn-group">
+		    <button id="addBanner" type="button" class="btn btn-default">添加banner</button>
+		</div>
+        <table id="bannerTable"></table>
+	</div>
+	<div class="editWrapper wrap" data-type="0">
+		<div class="toolsbar">
+			<span class="showBannerList"><i class="fa fa-arrow-left" aria-hidden="true"></i>返回banner列表</span>
+		</div>
+		<div class="stepContent">
+			<p class="title">添加banner</p>
+			<input type="hidden" id="id"/>
+			<ul>
+				<li>
+					<label for="" class="need col-xs-12 col-sm-3 col-md-2">所属产品</label>
+					<div class="col-xs-12 col-sm-9 col-md-7">
+						<div class="input">
+							<select name="productId" id="productId">
+								<option value="">选择banner所属产品</option>
+							</select>
+						</div>
+					</div>
+				</li>
+				<li>
+					<label for="" class="need col-xs-12 col-sm-3 col-md-2">banner位置</label>
+					<div class="col-xs-12 col-sm-9 col-md-7">
+						<div class="input">
+							<input type="text" id="position" name="position" placeholder="banner位置"/>
+						</div>
+					</div>
+				</li>
+				<li>
+					<label for="" class="need col-xs-12 col-sm-3 col-md-2">上传banner</label>
+					<div class="col-xs-12 col-sm-9 col-md-7">
+						<div class="img_upload">
+							<a href="javascript:;" class="select_img">
+								<i class="fa fa-plus" aria-hidden="true"></i>
+								<input type="file" name="cacheImgFile" id="bannerImgFile" />
+							</a>
+							<div class="drop_area" id="drap_img">将图片拖到这上传</div>
+						</div>
+						<div class="img_info">
+							<img id="bannerImg" src="" alt="banner"/>
+							<div>
+								<p>文件名称：<span class="bannerImg_name"></span></p>
+								<p>上传进度：<span class="bannerImg_progress"></span></p>
+							</div>
+							<input type="hidden" name="imageLink" id="imageLink" />
+						</div>
+					</div>
+				</li>
+				<li>
+					<label for="" class="need col-xs-12 col-sm-3 col-md-2">跳转链接</label>
+					<div class="col-xs-12 col-sm-9 col-md-7">
+						<div class="input">
+							<input type="text" id="linkPath" name="linkPath" placeholder="跳转链接"/>
+						</div>
+					</div>
+				</li>
+				<li>
+					<label for="" class="need col-xs-12 col-sm-3 col-md-2">跳转类型</label>
+					<div class="col-xs-12 col-sm-9 col-md-7">
+						<div class="input">
+							<select name="linkType" id="linkType">
+								<option value="">请选择跳转类型</option>
+								<option value="0">跳转三方URL</option>
+								<option value="1">跳转详情</option>
+							</select>
+						</div>
+					</div>
+				</li>
+			</ul>
+			<div class="control-btns">
+				<button class="btn-save" id="savaBannerInfo">保存</button>
+			</div>
+		</div>
+	</div>
+	<!-- 模态框（Modal） -->
+	<div class="modal fade  bs-example-modal-sm" id="bannerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	    <div class="modal-dialog modal-sm">
+	        <div class="modal-content">
+	            <!-- <div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	                <h4 class="modal-title" id="myModalLabel"></h4>
+	            </div> -->
+	            <div class="modal-body"></div>
+	            <div class="modal-footer">
+	                <button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+	            </div>
+	        </div><!-- /.modal-content -->
+	    </div><!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+</div>

@@ -1,0 +1,79 @@
+*{
+	padding: 0;
+	margin:0;
+}
+li{list-style: none;}
+html,
+body{
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+.wrapper{
+	width: 80%;
+	margin: 6% auto 0;
+	background: rgba(255,255,255,.3);
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-o-border-radius: 3px;
+	border-radius: 3px;
+	-webkit-box-shadow: 0 0 6px 0 rgb(255,255,255);
+	-moz-box-shadow: 0 0 6px 0 rgb(255,255,255);
+	-o-box-shadow: 0 0 6px 0 rgb(255,255,255);
+	box-shadow: 0 0 6px 0 rgb(255,255,255);
+	text-align: center;
+}
+.wrapper>.title{
+	text-align: center;
+	padding: 1rem 0;
+	font-size: 1.6rem;
+}
+.wrapper>.tips{
+	color: #F92672;
+	text-align: center;
+	height: 1rem;
+}
+.wrapper>.tips>span{display: none;}
+.wrapper>.inputWrapper>div>input{
+	height: 2.4rem;
+	width: 300px;
+	margin: 1rem auto 0;
+	padding-left: 1rem;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-o-border-radius: 3px;
+	border-radius: 3px;
+	border:1px solid #999;
+}
+.wrapper>.inputWrapper>.btn{
+	width: 300px;
+	margin: 0 auto;
+	text-align: right;
+}
+.wrapper>.inputWrapper>.btn>button{
+	width: 100%;
+	height: 2.4rem;
+	margin-top: 1rem;
+	background: #23AD44;
+	color: #fff;
+	border:0;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-o-border-radius: 3px;
+	border-radius: 3px;
+	cursor: pointer;
+}
+.back{
+	margin-top: 1rem;
+}
+@media screen and (max-width: 420px){
+	.wrapper>.inputWrapper>div>input{
+		padding-left: 4%;
+		width: 100%;
+	}
+	.wrapper>.inputWrapper>.btn{width: 100%;}
+}

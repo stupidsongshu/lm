@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  	<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+	<title>登录-乐贷款后台配置系统</title>
+	<link rel="stylesheet" href="../css/font-awesome.min.css">
+	<link rel="stylesheet" href="../css/login.css">
+</head>
+<body onkeypress="LOGIN.enterEvent(event)">
+	<div class="wrapper">
+		<p class="title">乐贷款后台配置系统</p>
+		<p class="tips" id="tips"><span id="tipsText"></span></p>
+		<div class="inputWrapper">
+			<div class="name">
+				<input type="text" name="userName" id="userName" placeholder="用户名" />
+				<span><i class="fa fa-user" aria-hidden="true"></i></span>
+			</div>
+			<div class="pwd">
+				<input type="password" name="password" id="password" placeholder="密码" />
+				<span><i class="fa fa-lock" aria-hidden="true"></i></span>
+			</div>
+			<p class="forget"><a href="javascript:;" id="forget">忘记密码？</a></p>
+			<button id="login">登录</button>
+		</div>
+	</div>
+	<script src="../js/basic/LTadmin-rel.js"></script>
+	<script src="../js/basic/LTadmin.js"></script>
+	<script src="../js/crypto/aes.js"></script>
+	<script src="../js/crypto/pad-zeropadding-min.js"></script>
+	<script src="../js/md5.min.js"></script>
+	<script src="../js/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/login.js"></script>
+</body>
+</html>
