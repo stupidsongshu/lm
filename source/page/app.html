@@ -42,7 +42,7 @@
 							<label for="" class="need col-xs-12 col-sm-3 col-md-2">产品名称</label>
 							<div class="col-xs-12 col-sm-9 col-md-7">
 								<div class="input">
-									<input type="text" id="productName" name="productName" placeholder="产品名称"/>
+									<input type="text" id="productName" name="productName" placeholder="请输入产品名称"/>
 									<!-- <span><i class="fa fa-check-circle" aria-hidden="true"></i></span> -->
 								</div>
 								<p>已签署合同或已上线产品不能修改产品名称</p>
@@ -52,7 +52,7 @@
 							<label for="" class="need col-xs-12 col-sm-3 col-md-2">产品包名</label>
 							<div class="col-xs-12 col-sm-9 col-md-7">
 								<div class="input">
-									<input type="text" id="productPackageName" name="productPackageName" placeholder="产品包名"/>
+									<input type="text" id="productPackageName" name="productPackageName" placeholder="请输入产品包名"/>
 								</div>
 							</div>
 						</li>
@@ -60,7 +60,7 @@
 							<label for="" class="need col-xs-12 col-sm-3 col-md-2">产品二级标题</label>
 							<div class="col-xs-12 col-sm-9 col-md-7">
 								<div class="input">
-									<input type="text" id="productSubTitle" name="productSubTitle" placeholder="产品二级标题" />
+									<input type="text" id="productSubTitle" name="productSubTitle" placeholder="请输入产品二级标题" />
 								</div>
 							</div>
 						</li>
@@ -68,8 +68,7 @@
 							<label for="" class="need col-xs-12 col-sm-3 col-md-2">产品提供方</label>
 							<div class="col-xs-12 col-sm-9 col-md-7">
 								<div class="input">
-									<select name="partnerId" id="partnerId">
-									</select>
+									<select name="partnerId" id="partnerId"></select>
 								</div>
 							</div>
 						</li>
@@ -78,6 +77,7 @@
 							<div class="col-xs-12 col-sm-9 col-md-7">
 								<div class="input">
 									<select name="productType" id="productType">
+										<option value="请选择产品类型">请选择产品类型</option>
 										<option value="1">现金贷</option>
 										<option value="2">还信用卡</option>
 										<option value="3">企业贷</option>
@@ -106,12 +106,12 @@
 							<label for="" class="need col-xs-12 col-sm-3 col-md-2">H5注册链接</label>
 							<div class="col-xs-12 col-sm-9 col-md-7">
 								<div class="input">
-									<input type="text" name="h5ApplyUrl" id="h5ApplyUrl">
+									<input type="text" name="h5ApplyUrl" id="h5ApplyUrl" placeholder="请输入H5注册链接">
 								</div>
 							</div>
 						</li>
 						<li class="text-center">
-							<button class="btn btn-primary btn-createApp" style="float: none;">创建合作产品</button>
+							<button class="btn btn-primary btn-app-step btn-createApp" style="float: none;">创建合作产品</button>
 						</li>
 					</ul>
 				</div>
@@ -225,7 +225,7 @@
 							<label for="" class="need col-xs-12 col-sm-3 col-md-2">产品最小额度</label>
 							<div class="col-xs-12 col-sm-9 col-md-7">
 								<div class="input">
-									<input type="number" name="minCreLine" id="minCreLine">
+									<input type="number" name="minCreLine" id="minCreLine" placeholder="单位：元">
 								</div>
 							</div>
 						</li>
@@ -233,7 +233,7 @@
 							<label for="" class="need col-xs-12 col-sm-3 col-md-2">产品最大额度</label>
 							<div class="col-xs-12 col-sm-9 col-md-7">
 								<div class="input">
-									<input type="number" name="maxCreLine" id="maxCreLine">
+									<input type="number" name="maxCreLine" id="maxCreLine" placeholder="单位：元">
 								</div>
 							</div>
 						</li>
@@ -251,7 +251,7 @@
 							<label for="" class="need col-xs-12 col-sm-3 col-md-2">产品利率</label>
 							<div class="col-xs-12 col-sm-9 col-md-7">
 								<div class="input">
-									<input type="number" name="interestRate" id="interestRate">
+									<input type="number" name="interestRate" id="interestRate"  placeholder="请输入产品利率，如0.36">
 								</div>
 							</div>
 						</li>
@@ -277,7 +277,7 @@
 							<label for="" class="need col-xs-12 col-sm-3 col-md-2">产品分期期数</label>
 							<div class="col-xs-12 col-sm-9 col-md-7">
 								<div class="input">
-									<input type="text" name="instalPeriodList" id="instalPeriodList" placeholder="以英文逗号分隔">
+									<input type="text" name="instalPeriodList" id="instalPeriodList" placeholder="分期期数列表数组以英文逗号分隔，如 3;6;12">
 								</div>
 							</div>
 						</li>
@@ -298,13 +298,13 @@
 								<div class="input radio">
 									<input type="radio" name="instalReturnType" id="instalReturnType1" value="0" />
 									<label for="instalReturnType1">一次性归还</label>
-									<input type="radio" name="instalReturnType" id="instalReturnType2" value="1"/>
-									<label for="instalReturnType2">按分分期类型归还</label>
+									<input type="radio" name="instalReturnType" id="instalReturnType2" value="1" />
+									<label for="instalReturnType2">按分期类型归还</label>
 								</div>
 							</div>
 						</li>
 						<li class="text-center">
-							<button class="btn btn-primary btn-updateFee" style="float: none;">保存</button>
+							<button class="btn btn-primary btn-app-step btn-updateFee" style="float: none;">保存</button>
 						</li>
 					</ul>
 				</div>
@@ -316,11 +316,11 @@
 					<ul>
 						<li>
 							<label for="" class="col-xs-12 col-sm-4 col-md-2">产品最佳特性标签</label>
-							<div class="col-xs-12 col-sm-8 col-md-10 input" id="character_label_list">
+							<div class="col-xs-12 col-sm-8 col-md-10 input" id="select_character_label">
 								<div class="input">
 									<!-- <input type="text" id="featureLabel" name="featureLabel" placeholder="填写标签"/> -->
 								</div>
-								<div id="select_character_label_Result"></div>
+								<div id="select_character_label_result"></div>
 							</div>
 						</li>
 						<!-- <li>
@@ -336,21 +336,21 @@
 						</li> -->
 						<li>
 							<label for="" class="col-xs-12 col-sm-4 col-md-2">产品适用人群</label>
-							<div class="col-xs-12 col-sm-8 col-md-7">
-								<div class="input" id="suitableRole">
+							<div class="col-xs-12 col-sm-8 col-md-10" id="suitableRole">
+								<div class="input">
 									<!-- <button value="all">全适用</button>
 									<button value="student">学生</button>
 									<button value="officialWorker">工薪族</button>
 									<button value="professional">自由职业</button> -->
 								</div>
-								<div id="select_suit_role_Result"></div>
+								<div id="select_suit_role_result"></div>
 							</div>
 						</li>
 						<li>
 							<label for="" class="col-xs-12 col-sm-4 col-md-2">产品推荐星数</label>
-							<div class="col-xs-12 col-sm-8 col-md-7">
+							<div class="col-xs-12 col-sm-8 col-md-10">
 								<div class="input star" id="recommendStar">
-									<i class="fa fa-star-o" value='0'></i>
+									<i class="fa fa-star-o" value='3'></i>
 									<i class="fa fa-star-o" value='0'></i>
 									<i class="fa fa-star-o" value='0'></i>
 									<i class="fa fa-star-o" value='0'></i>
@@ -360,7 +360,7 @@
 						</li>
 						<li>
 							<label for="" class="col-xs-12 col-sm-4 col-md-2">产品特性状态</label>
-							<div class="col-xs-12 col-sm-8 col-md-7">
+							<div class="col-xs-12 col-sm-8 col-md-10">
 								<div class="input" id="featureState">
 									<button value="hot">HOT</button>
 									<button value="fast">FAST</button>
@@ -370,7 +370,7 @@
 							</div>
 						</li>
 						<li class="text-center">
-							<button style="float: none;" class="btn btn-primary btn-updateCharacter">保存</button>
+							<button style="float: none;" class="btn btn-primary btn-app-step btn-updateCharacter">保存</button>
 						</li>
 					</ul>
 				</div>
@@ -403,69 +403,39 @@
 						</li> -->
 						<li>
 							<label for="" class="need col-xs-12 col-sm-3 col-md-2">产品申请流程</label>
-							<div class="col-xs-12 col-sm-9 col-md-10">
-								<div class="select-apply-process">
-									<span value="1">
-										<img src="source/image/app/process/1.png" alt="">
-									</span>
-									<span value="2">
-										<img src="source/image/app/process/2.png" alt="">
-									</span>
-									<span value="3">
-										<img src="source/image/app/process/3.png" alt="">
-									</span>
-									<span value="4">
-										<img src="source/image/app/process/4.png" alt="">
-									</span>
-									<span value="5">
-										<img src="source/image/app/process/5.png" alt="">
-									</span>
-									<span value="6">
-										<img src="source/image/app/process/6.png" alt="">
-									</span>
-									<span value="7">
-										<img src="source/image/app/process/7.png" alt="">
-									</span>
-									<span value="8">
-										<img src="source/image/app/process/8.png" alt="">
-									</span>
-									<span value="9">
-										<img src="source/image/app/process/9.png" alt="">
-									</span>
-									<span value="10">
-										<img src="source/image/app/process/10.png" alt="">
-									</span>
-									<span value="11">
-										<img src="source/image/app/process/11.png" alt="">
-									</span>
-									<span value="12">
-										<img src="source/image/app/process/12.png" alt="">
-									</span>
-								</div>
+							<div class="col-xs-12 col-sm-9 col-md-10" id="select_apply_process">
+								<div class="input"></div>
 								<div class="selectResult" id="applyProcess"></div>
 							</div>
 						</li>
 						<li>
 							<label for="" class="need col-xs-12 col-sm-3 col-md-2">产品申请条件</label>
-							<div class="col-xs-12 col-sm-9 col-md-10">
-								<div class="input keyInput">
+							<div class="col-xs-12 col-sm-9 col-md-10" id="applyKeywords">
+								<!-- <div class="input keyInput">
 									<div class="inputContent keyContent" id="applyKeywords">
 									</div>
 									<input type="text" id="productKeywordInput" name="productKeywordInput" placeholder="填写关键字" class="keywordInput" />
 									<span class="productKeywordAdd"><i class="fa fa-plus-circle"></i></span>
-								</div>
+								</div> -->
+								<div class="input"></div>
+								<div id="select_apply_condition_result"></div>
 							</div>
 						</li>
 						<li>
 							<label for="" class="need col-xs-12 col-sm-3 col-md-2">产品申请材料</label>
-							<div class="col-xs-12 col-sm-9 col-md-10">
-								<div class="input keyInput">
+							<div class="col-xs-12 col-sm-9 col-md-10" id="applyRequire">
+								<!-- <div class="input keyInput">
 									<div class="inputContent keyContent" id="applyRequire">
 									</div>
 									<input type="text" id="productKeywordInput" name="productKeywordInput" placeholder="填写关键字" class="keywordInput" />
 									<span class="productKeywordAdd"><i class="fa fa-plus-circle"></i></span>
-								</div>
+								</div> -->
+								<div class="input"></div>
+								<div id="select_apply_material_result"></div>
 							</div>
+						</li>
+						<li class="text-center">
+							<button style="float: none;" class="btn btn-primary btn-app-step btn-updateApply">保存</button>
 						</li>
 					</ul>
 				</div>

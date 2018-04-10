@@ -175,8 +175,10 @@ var ajaxUrl = {
         "updateProductFee"       : ajaxUrlFlag.getDomain()+'/lm/c/i',//更新合作产品额度费率,
         "createProductUrl"       : ajaxUrlFlag.getDomain()+'/llm/cp/createProduct',//创建产品url,
         "updateProductUrl"       : ajaxUrlFlag.getDomain()+'/llm/cp/updateProduct',//修改产品url
-        "createProductDetailUrl" : ajaxUrlFlag.getDomain()+'/llm/cp/createProductDetail',//创建产品明细url
-        "updateProductDetailUrl" : ajaxUrlFlag.getDomain()+'/llm/cp/updateProductDetail',//修改产品明细url
+        // "createProductDetailUrl" : ajaxUrlFlag.getDomain()+'/llm/cp/createProductDetail',//创建产品明细url
+        // "updateProductDetailUrl" : ajaxUrlFlag.getDomain()+'/llm/cp/updateProductDetail',//修改产品明细url
+        "updateCharacterUrl"     : ajaxUrlFlag.getDomain()+'/lm/c/i',//更新产品特性信息
+        "updateApplyUrl"         : ajaxUrlFlag.getDomain()+'/lm/c/i',//更新产品申请信息
         // "getAProductInfoUrl"     : ajaxUrlFlag.getDomain()+'/llm/cp/findProduct',//获取某个产品所有信息url
         "getAProductInfoUrl"     : ajaxUrlFlag.getDomain()+'/lm/c/i',//合作方信息获取
         "setProductStatusUrl"    : ajaxUrlFlag.getDomain()+'/llm/cp/updateProductStatus',//设置产品状态url

@@ -228,7 +228,7 @@ var partner = {
 			account: userInfo.account,
 			token: userInfo.token
 		}
-		function ajax(result) {
+		function bootstrapTableAjax(result) {
 			LTadmin.doAjaxRequestSign(url, call, ajaxOptions, function(data){
 				var obj = JSON.parse(data);
 				if (obj.returnCode === '000000') {
@@ -236,7 +236,7 @@ var partner = {
 					result.success({
 						row: partners
 					});
-					$('#table').bootstrapTable('load', partners);  
+					$('#table').bootstrapTable('load', partners);
 				} else {
 					partner.toggleModal(obj.returnMsg);
 					return;
@@ -249,7 +249,7 @@ var partner = {
 			toolbar: "#toolbar",
 			url: url,
 			method: 'post',
-			ajax: ajax,
+			ajax: bootstrapTableAjax,
 			ajaxOptions: ajaxOptions,
 	        cache: false,
 	        striped: true,
@@ -278,9 +278,18 @@ var partner = {
 	            {field:"action",title:"操作",width:"100",align:"center",valign:"middle",formatter:"partnerEditAction",events:"eidtThePartnerEvents"}
 	        ],
 	        formatNoMatches: function(){return '无符合条件的记录';},
-	        onSearch : function(){  },
-	        onRefresh : function(){ partner.refreshTable(); },
-	        onLoadSuccess : function(){  }
+	        onSearch : function(){
+				// 当搜索表格时触发
+				console.log('当搜索表格时触发')
+			},
+	        // onRefresh : function(){ partner.refreshTable(); },
+	        onRefresh : function(){
+				// 点击刷新按钮后触发
+			},
+	        onLoadSuccess : function(){
+				// 远程数据加载成功时触发成功
+				console.log('远程数据加载成功时触发成功')
+			}
 	    });
 	}
 };

@@ -183,10 +183,22 @@
 }
 .stepContent>ul>li>div>.input>span{
 	display: inline-block;
-	height: 3rem;
-	width: 18%;
+	height: 6rem;
+	margin: .5rem;
+	padding: .5rem;
+	/* width: 18%; */
 	font-size: 2rem;
 	line-height: 3rem;
+	text-align: center;
+	cursor: pointer;
+}
+.stepContent>ul>li>div>.input>span>img{
+	width: auto;
+	height: 100%;
+}
+.stepContent>ul>li>div>.input>span.selected{
+	border: 2px dotted #999;
+	cursor: not-allowed;
 }
 .stepContent>ul>li>div>.input>button{
 	height: 3rem;
@@ -307,6 +319,11 @@
 	-moz-box-shadow: 0 2px 0px 1px #D55C44;
 	box-shadow: 0 2px 0px 1px #D55C44;
 }
+.btn-app-step {
+	width: 40%;
+	height: 50px;
+	font-size: 16px;
+}
 .agreenment>span{color: #FF6565;}
 .toolsbar{
 	/* height: 30px; */
@@ -417,24 +434,20 @@
 .selectOptions>li:hover{background: #CBCBCB;}
 .selectOptions>li.disabled{background: #EEEEEE;}
 
-.select-apply-process>span{
-	display: inline-block;
-	height: 5rem;
-}
-.select-apply-process>span>img{
-	height: 100%;
-	width: auto;
-}
-#select_character_label_Result>span,
-#select_suit_role_Result>span{
+#select_character_label_result>span,
+#select_suit_role_result>span,
+#select_apply_condition_result>span,
+#select_apply_material_result>span{
 	position: relative;
 	display: inline-block;
 	margin-right: 2rem;
 	margin-top: 1rem;
 	color: #F09116;
 }
-#select_character_label_Result>span>i,
-#select_suit_role_Result>span>i{
+#select_character_label_result>span>i,
+#select_suit_role_result>span>i,
+#select_apply_condition_result>span>i,
+#select_apply_material_result>span>i{
 	position: absolute;
 	top: -.4rem;
 	right: -1rem;
@@ -443,12 +456,15 @@
 
 .selectResult{
 	margin-top: 2rem;
+	padding: .5rem;
 	border: 1px dotted #666;
 }
 .selectResult>span{
+	position: relative;
 	display: inline-block;
 	height: 5rem;
-	position: relative;
+	margin-right: 2rem;
+	margin-top: 1rem;
 }
 .selectResult>span>img{
 	height: 100%;
@@ -466,7 +482,6 @@
 	background-size: 100% auto;
 }
 .selectResult>span:last-child:after{display: none;}
-.selectResult>span{margin-right: 2rem;}
 .selectResult>span>i{
 	position: absolute;
 	top: -.4rem;

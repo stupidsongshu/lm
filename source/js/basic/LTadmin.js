@@ -77,11 +77,12 @@ var LTadmin = {
     	});
 	},
 	doAjaxRequestSign: function(url, call, data, callback, async) {
+		$('#self-indicator-wrapper').fadeIn();
 		var async = true;
     	if (async!=undefined) {
 			async = async;
     	}
-		console.log('是否异步:'+async);
+		// console.log('是否异步:'+async);
 
 		var ua = ajaxUrl.ua
 		var signKey = ajaxUrl.signKey
@@ -109,6 +110,7 @@ var LTadmin = {
     		data : encrypted.toString(),
     		async : async,
     		success : function(data){
+				$('#self-indicator-wrapper').fadeOut();
 				var decrypted = CryptoJS.AES.decrypt(data, key, {
 					iv: iv,
 					mode: CryptoJS.mode.CBC,
@@ -118,6 +120,7 @@ var LTadmin = {
     			callback(CryptoJS.enc.Utf8.stringify(decrypted).toString());
     		},
     		error : function(data){
+				$('#self-indicator-wrapper').fadeOut();
     			callback(data);
     		}
     	});
