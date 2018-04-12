@@ -498,8 +498,8 @@ var app = {
 	toggleAppShow: function(product, index, platformName) {
 		console.log(product, index, platformName)
 		// khwShow为undefined或0时表示在卡还王上不展示，为1时表示在卡还王上展示
-		var khwShow = product.khwShow === undefined ? 0 : product.khwShow
-		var ldkShow = product.ldkShow === undefined ? 0 : product.ldkShow
+		var khwShow = product.platformShow.khwShow === undefined ? 0 : product.platformShow.khwShow
+		var ldkShow = product.platformShow.ldkShow === undefined ? 0 : product.platformShow.ldkShow
 
 		var url = ajaxUrl.appUrls.updateProductShowUrl
 		var call = 'Product.updateShow'
@@ -518,7 +518,7 @@ var app = {
 				if (obj.returnCode === '000000') {
 					$('#table').bootstrapTable('updateCell', {
 						"index" : index,
-						"field" : 'isShow',
+						"field" : 'platformShow',
 						"value" : {
 							khwShow: param.khwShow,
 							ldkShow: param.ldkShow
@@ -1146,19 +1146,19 @@ var app = {
 			// console.log(obj)
 			if (obj.returnCode === '000000') {
 				obj.response.forEach(function(item) {
-					var showObj = {}
+					var platformShow = {}
 					item.list.forEach(function(listItem) {
 						if (listItem[0] === 'khw_show') {
-							showObj.khwShow = parseInt(listItem[1])
+							platformShow.khwShow = parseInt(listItem[1])
 						} else if (listItem[0] === 'ldk_show') {
-							showObj.ldkShow = parseInt(listItem[1])
+							platformShow.ldkShow = parseInt(listItem[1])
 						}
 					})
-					var product = Object.assign(item.product, showObj)
-					products.push(product)
+					item.product.platformShow = platformShow
+					products.push(item.product)
 				})
 
-				console.log(products)
+				// console.log(products)
 				cb && cb(products)
 			} else {
 				util.toggleModal(obj.returnMsg)
@@ -1167,6 +1167,7 @@ var app = {
 		});
 	},
 	refreshTable : function(){
+		// 获取合作方全部信息后进行操作(初始化表格或刷新表格)
 		app.getProductList(function(products) {
 			// $('#table').bootstrapTable('filterBy', { rows:this.allData});
 			$('#table').bootstrapTable('load', products);
@@ -1194,7 +1195,7 @@ var app = {
 	            {field:"productName",  title:"应用名称", width:"100",align:"left",  valign:"middle",formatter:"nameTransform"},
 	            {field:"productStatus",title:"状态",     width:"100",align:"center",valign:"middle",formatter:"toggleProductStatusFormatter", events: "eidtTheAppEvents", cellStyle:"statusStyle"},
 	            {field:"featureState", title:"状态标签", width:"100",align:"center",valign:"middle",formatter:"labelTransform"},
-	            {field:"isShow",       title:"是否展示", width:"100",align:"center",valign:"middle",formatter:"editIsShow",events:"eidtTheAppEvents"},
+	            {field:"platformShow", title:"是否展示", width:"100",align:"center",valign:"middle",formatter:"editIsShow",events:"eidtTheAppEvents"},
 	            {field:"action",       title:"操作",     width:"100",align:"center",valign:"middle",formatter:"editAction",events:"eidtTheAppEvents"}
 	        ],
 	        formatNoMatches: function(){return '无符合条件的记录';},
@@ -1217,98 +1218,7 @@ var app = {
 		$('#getAll').on('click',function(){
 			$('#table').bootstrapTable('filterBy', null);
 		});
-	},
-	// initTable : function(data){
-	// 	var url = ajaxUrl.appUrls.listProductUrl
-	// 	var call = 'Product.list'
-	// 	var userInfo = JSON.parse(sessionStorage.userInfo)
-	// 	var ajaxOptions = {
-	// 		account: userInfo.account,
-	// 		token: userInfo.token
-	// 	}
-
-	// 	var products = []
-	// 	function bootstrapTableAjax(result) {
-	// 		LTadmin.doAjaxRequestSign(url, call, ajaxOptions, function(data){
-	// 			var obj = JSON.parse(data);
-	// 			if (obj.returnCode === '000000') {
-	// 				obj.response.forEach(function(item) {
-	// 					products.push(item.product)
-	// 				})
-	// 				console.log(products)
-	// 				result.success({
-	// 					row: products
-	// 				});
-	// 				$('#table').bootstrapTable('load', products);
-	// 			} else {
-	// 				util.toggleModal(obj.returnMsg);
-	// 				return;
-	// 			}
-	// 		});
-	// 	}
-
-	// 	$('#table').bootstrapTable({
-	//         idField: "id",
-	// 		toolbar: "#toolbar",
-	// 		url: url,
-	// 		method: 'post',
-	// 		ajax: bootstrapTableAjax,
-	// 		ajaxOptions: ajaxOptions,
-	//         cache: false,
-	//         striped: true,
-	//         pagination: true,
-	//         pageSize: 10,
-	//         pageNumber:1,
-	// 		pageList: [10, 20, 50, 100, 200],
-	//         search: true,
-	//         sortable : true,
-	//         showColumns: true,
-	//         showRefresh: true,
-	//         showExport: true,
-	//         search: true,
-	//         // data : data,
-	//         // columns: [
-	//         //     {field:"id",           title:"id",      width:"100",align:"center",valign:"middle",visible:false},
-	//         //     {field:"productName",  title:"应用名称", width:"100",align:"left",  valign:"middle",formatter:"nameTransform"},
-	//         //     {field:"status",       title:"状态",     width:"100",align:"center",valign:"middle",formatter:"appStatusTransform",cellStyle:"statusStyle"},
-	//         //     {field:"startTime",    title:"创建时间", width:"200",align:"center",valign:"middle",sortable:true},
-	//         //     {field:"scoreRank",    title:"排名/评分",width:"100",align:"center",valign:"middle",sortable:true},
-	//         //     {field:"visitNum",     title:"日浏览数", width:"100",align:"center",valign:"middle",sortable:true},
-	//         //     {field:"loanNum",      title:"日申请数", width:"100",align:"center",valign:"middle",sortable:true},
-	//         //     {field:"recommendStar",title:"推荐星数", width:"100",align:"center",valign:"middle",sortable:true,formatter:"appStarTransform"},
-	//         //     {field:"featureState", title:"状态标签", width:"100",align:"center",valign:"middle",formatter:"labelTransform"},
-	//         //     {field:"action",       title:"操作",     width:"100",align:"center",valign:"middle",formatter:"editAction",events:"eidtTheAppEvents"}
-	// 		// ],
-	// 		columns: [
-	//             {field:"id",           title:"id",      width:"100",align:"center",valign:"middle",visible:false},
-	//             {field:"productName",  title:"应用名称", width:"100",align:"left",  valign:"middle",formatter:"nameTransform"},
-	//             {field:"productStatus",title:"状态",     width:"100",align:"center",valign:"middle",formatter:"appStatusTransform",cellStyle:"statusStyle"},
-	//             // {field:"startTime",    title:"创建时间", width:"200",align:"center",valign:"middle",sortable:true},
-	//             // {field:"scoreRank",    title:"排名/评分",width:"100",align:"center",valign:"middle",sortable:true},
-	//             // {field:"visitNum",     title:"日浏览数", width:"100",align:"center",valign:"middle",sortable:true},
-	//             // {field:"loanNum",      title:"日申请数", width:"100",align:"center",valign:"middle",sortable:true},
-	//             // {field:"recommendStar",title:"推荐星数", width:"100",align:"center",valign:"middle",sortable:true,formatter:"appStarTransform"},
-	//             {field:"featureState", title:"状态标签", width:"100",align:"center",valign:"middle",formatter:"labelTransform"},
-	//             {field:"isShow",       title:"是否展示", width:"100",align:"center",valign:"middle",formatter:"editIsShow",events:"eidtTheAppEvents"},
-	//             {field:"action",       title:"操作",     width:"100",align:"center",valign:"middle",formatter:"editAction",events:"eidtTheAppEvents"}
-	//         ],
-	//         formatNoMatches: function(){return '无符合条件的记录';},
-	//         onSearch : function(){
-	// 			// 当搜索表格时触发
-	// 		},
-	//         onRefresh : function(){},
-	//         onLoadSuccess : function(){}
-	//     });
-	//    	$('#getOnLine').on('click',function(){
-	//    		$('#table').bootstrapTable('filterBy', {'productStatus': 1});
-	// 	});
-	// 	$('#getOffLine').on('click',function(){
-	// 		$('#table').bootstrapTable('filterBy', {'productStatus': 0});
-	//  	});
-	// 	$('#getAll').on('click',function(){
-	// 		$('#table').bootstrapTable('filterBy', null);
-	// 	});
-	// }
+	}
 };
 
 /* 编辑某个应用 <span class="notice">修改应用信息</span>*/

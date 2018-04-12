@@ -62,11 +62,12 @@ function editAction(value,row,index){
 	].join('');
 }
 function editIsShow(value,row,index){
+	// console.log(row)
 	var arr = []
 	arr.push('<p class="action">')
 	// khwShow为undefined或0时表示在卡还王上不展示，为1时表示在卡还王上展示
-	var khwShow = parseInt(row.khwShow === undefined ? 0 : row.khwShow)
-	var ldkShow = parseInt(row.ldkShow === undefined ? 0 : row.ldkShow)
+	var khwShow = parseInt(row.platformShow.khwShow === undefined ? 0 : row.platformShow.khwShow)
+	var ldkShow = parseInt(row.platformShow.ldkShow === undefined ? 0 : row.platformShow.ldkShow)
 
 	// 卡还王展示状态
 	if (khwShow === 0) {

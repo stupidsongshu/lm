@@ -5,35 +5,6 @@ var partner = {
 		$('.current span').text(partner.page);
 		$('.menuList>li[data-target=partner]').addClass('active').siblings('li').removeClass('active');
 
-		// LTadmin.doAjaxRequest(ajaxUrl.partnerUrls.listPartnerUrl,'',function(data){
-		// 	var obj = JSON.parse(data);
-		// 	console.log(obj);
-		// 	if(obj.status==1){
-		// 		var partners = obj.partners;
-		// 		partner.initTable(partners);
-		// 	}else{
-		// 		util.toggleModal(obj.statusMsg);
-		// 		return;
-		// 	}
-		// });
-
-		// var call = 'Partner.list'
-		// var userInfo = JSON.parse(sessionStorage.userInfo)
-		// var param = {
-		// 	account: userInfo.account,
-		// 	token: userInfo.token
-		// }
-		// LTadmin.doAjaxRequestSign(ajaxUrl.partnerUrls.listPartnerUrl, call, param, function(data){
-		// 	var obj = JSON.parse(data);
-		// 	if (obj.returnCode === '000000') {
-		// 		var partners = obj.response;
-		// 		partner.initTable(partners);
-		// 	} else {
-		// 		util.toggleModal(obj.returnMsg);
-		// 		return;
-		// 	}
-		// });
-
 		partner.initTable();
 
 		//初始化添加合作方按钮
@@ -156,26 +127,6 @@ var partner = {
 		})
 	},
 	editThePartner : function(partnerId){
-		// var parameter = {"partnerId":partnerId}
-		// $('#partnerId').val(partnerId);
-		// LTadmin.doAjaxRequest(ajaxUrl.partnerUrls.getAPartnerInfoUrl,parameter,function(data){
-		// 	var obj = JSON.parse(data);
-		// 	console.log(obj);
-		// 	if(obj.status==1){
-		// 		var partner = obj.partner;
-		// 		$('.tableWrapper').hide();
-		// 		$('.editWrapper').show();
-		// 		$('#companyName').val(partner.companyName);
-		// 		$('#partnerContactName').val(partner.partnerContactName);
-		// 		$('#partnerContactMobileNo').val(partner.partnerContactMobileNo);
-		// 		$('#partnerContactEmail').val(partner.partnerContactEmail);
-		// 		$('#partnerDomain').val(partner.partnerDomain);
-		// 	}else{
-		// 		util.toggleModal(obj.statusMsg);
-		// 		return;
-		// 	}
-		// });
-
 		// 合作方 '公司主页'字段 只能添加不能修改
 		$('#partnerDomainWrapper').hide();
 

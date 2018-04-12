@@ -45,7 +45,7 @@ var sort = {
 			columns: [
 	            {field:"productId",    title:"id",      width:"100",align:"center",valign:"middle",visible:true},
 				{field:"productName",  title:"应用名称", width:"100",align:"left",  valign:"middle",formatter:"nameTransform"},
-				{field:"productStatus",title:"状态",     width:"100",align:"center",valign:"middle",formatter:"appStatusTransform",cellStyle:"statusStyle"},
+				{field:"productStatus",title:"状态",     width:"100",align:"center",valign:"middle",formatter:"toggleProductStatusFormatter",cellStyle:"statusStyle"},
 	            {field:"action",       title:"操作",     width:"100",align:"center",valign:"middle",formatter:"editActionHasSort",events:"eidtTheAppEvents"}
 	        ],
 	        formatNoMatches: function(){return '无符合条件的记录';},
