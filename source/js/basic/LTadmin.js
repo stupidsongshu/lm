@@ -90,11 +90,11 @@ var LTadmin = {
 		var sign =  md5(ua + "&" + call + "&" + timestamp + "&" + signKey);
 
 		var params = JSON.stringify({
-			"ua": ua,
-			"call": call,
-			"args": data,
-			"sign": sign,
-			"timestamp": timestamp
+			ua: ua,
+			call: call,
+			args: data,
+			sign: sign,
+			timestamp: timestamp
 		})
 
 		var key = CryptoJS.enc.Utf8.parse(ajaxUrl.cryptoKey)
@@ -119,9 +119,9 @@ var LTadmin = {
 				// var json = JSON.parse(CryptoJS.enc.Utf8.stringify(decrypted).toString())
     			callback(CryptoJS.enc.Utf8.stringify(decrypted).toString());
     		},
-    		error : function(data){
+    		error : function(err){
 				$('#self-indicator-wrapper').fadeOut();
-    			callback(data);
+				util.toggleModalAjaxError();
     		}
     	});
 	}

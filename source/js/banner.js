@@ -12,7 +12,7 @@ var banner = {
 				var bannerList = obj.bannerList;
 				banner.initTable(bannerList);
 			}else{
-				banner.toggleModal(obj.statusMsg);
+				util.toggleModal(obj.statusMsg);
 				return;
 			}
 		});
@@ -49,27 +49,27 @@ var banner = {
 		};
 
 		if(parameter.productId==''){
-			banner.toggleModal("请选择“所属产品”！");
+			util.toggleModal("请选择“所属产品”！");
 			return;
 		}
 		if(parameter.position==''){
-			banner.toggleModal("请完成“banner位置”！");
+			util.toggleModal("请完成“banner位置”！");
 			return;
 		}else{
 			parameter.position = parseInt(parameter.position);
 		}
 		if(parameter.imageLink==''){
-			banner.toggleModal("请上传“banner图片”！");
+			util.toggleModal("请上传“banner图片”！");
 			return;
 		}
 		if(parameter.linkType==''){
-			banner.toggleModal("请选择“跳转类型”！");
+			util.toggleModal("请选择“跳转类型”！");
 			return;
 		}else{
 			parameter.linkType = parseInt(parameter.linkType);
 		}
 		if(parameter.linkPath==''){
-			banner.toggleModal("请完成“跳转链接”！");
+			util.toggleModal("请完成“跳转链接”！");
 			return;
 		}
 
@@ -89,7 +89,7 @@ var banner = {
 			var obj = JSON.parse(data);
 			console.log(obj);
 			if(obj.status==1){
-				banner.toggleModal(obj.statusMsg);
+				util.toggleModal(obj.statusMsg);
 				banner.refreshTable();//刷新表格数据
 				$('.tableWrapper').show();
 				$('.editWrapper').hide();
@@ -101,7 +101,7 @@ var banner = {
 				$('#imageLink').val('');
 				return;
 			}else{
-				banner.toggleModal(obj.statusMsg);
+				util.toggleModal(obj.statusMsg);
 				return;
 			}
 		},false);
@@ -125,7 +125,7 @@ var banner = {
 				$('#imageLink').val('1');
 				return;
 			}else{
-				banner.toggleModal(obj.statusMsg);
+				util.toggleModal(obj.statusMsg);
 				return;
 			}
 		});
@@ -139,7 +139,7 @@ var banner = {
 			var obj = JSON.parse(data);
 			console.log(obj);
 			if(obj.status==1){
-				banner.toggleModal(obj.statusMsg);
+				util.toggleModal(obj.statusMsg);
 				$('#bannerTable').bootstrapTable('updateCell', {
 					"index" : index,
 					"field" : 'status',
@@ -147,7 +147,7 @@ var banner = {
 				});
 				return;
 			}else{
-				banner.toggleModal(obj.statusMsg);
+				util.toggleModal(obj.statusMsg);
 				return;
 			}
 		});
@@ -185,7 +185,7 @@ var banner = {
 		var filename = fileList[0].name; //文件名称
 	    var filesize = Math.floor((fileList[0].size)/1024/1024);
         if(filesize>10){
-        	banner.toggleModal("上传文件的大小不能超过10M");
+        	util.toggleModal("上传文件的大小不能超过10M");
             return false;
     	}
         if(type==1){
@@ -193,7 +193,7 @@ var banner = {
 		    var img = window.webkitURL.createObjectURL(fileList[0]);
 		    //检测文件是不是图片
 	        if(fileList[0].type.indexOf('image')===-1){
-	        	banner.toggleModal("您上传的不是图片！");
+	        	util.toggleModal("您上传的不是图片！");
 	            return false;
 	        }
         	$('#bannerImg').attr('src',img);
@@ -201,7 +201,7 @@ var banner = {
         }else{
         	//检测文件是不是apk文件
 	        if(fileList[0].name.indexOf('.apk')===-1){
-	        	banner.toggleModal("您上传的不是apk文件！");
+	        	util.toggleModal("您上传的不是apk文件！");
 	            return false;
 	        }
 	        $('.apk_name').text(filename);
@@ -268,7 +268,7 @@ var banner = {
 				$('#productId').append(_html);
 				return;
 			}else{
-				banner.toggleModal(obj.statusMsg);
+				util.toggleModal(obj.statusMsg);
 				return;
 			}
 		});
@@ -281,7 +281,7 @@ var banner = {
 				var bannerList = obj.bannerList;
 				$('#bannerTable').bootstrapTable('load', bannerList);
 			}else{
-				banner.toggleModal(obj.statusMsg);
+				util.toggleModal(obj.statusMsg);
 				return;
 			}
 		},false);
@@ -320,10 +320,6 @@ var banner = {
 	        onRefresh : function(){ banner.refreshTable(); },
 	        onLoadSuccess : function(){  }
 	    });
-	},
-	toggleModal : function(msg){
-		$('.modal-body').text(msg);
-		$('#bannerModal').modal();
 	}
 };
 

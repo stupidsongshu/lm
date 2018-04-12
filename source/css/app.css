@@ -28,9 +28,10 @@
 	height: auto;
 }
 .action>a{
+	position: relative;
 	padding: .3rem 0;
 	margin-right: 10px;
-	position: relative;
+	cursor: pointer;
 }
 .cyan-bg{
 	background: #5FC9DD;

@@ -12,7 +12,7 @@ var partner = {
 		// 		var partners = obj.partners;
 		// 		partner.initTable(partners);
 		// 	}else{
-		// 		partner.toggleModal(obj.statusMsg);
+		// 		util.toggleModal(obj.statusMsg);
 		// 		return;
 		// 	}
 		// });
@@ -29,7 +29,7 @@ var partner = {
 		// 		var partners = obj.response;
 		// 		partner.initTable(partners);
 		// 	} else {
-		// 		partner.toggleModal(obj.returnMsg);
+		// 		util.toggleModal(obj.returnMsg);
 		// 		return;
 		// 	}
 		// });
@@ -62,10 +62,6 @@ var partner = {
 		//保存合作方信息
 		$('#savaPartnerInfo').on('click',function(){ partner.save(); });
 	},
-	toggleModal : function(msg){
-		$('.modal-body').text(msg);
-		$('#partnerModal').modal();
-	},
 	save : function(){
 		var url = ''
 		var call = ''
@@ -81,32 +77,36 @@ var partner = {
 		};
 
 		if(parameter.partnerCompany.trim() === ''){
-			partner.toggleModal('“合作方名称”为空，请完成！');
-			return;
-		}
-		// if(parameter.partnerContactName.trim() === ''){
-		// 	partner.toggleModal('“联系人”为空，请完成！');
-		// 	return;
-		// }
-		// if(parameter.partnerContactPhone.trim() === ''){
-		// 	partner.toggleModal('“联系电话”为空，请完成！');
-		// 	return;
-		// }
-		// if(parameter.partnerContactEmail.trim() === ''){
-		// 	partner.toggleModal('“联系邮箱”为空，请完成！');
-		// 	return;
-		// }
-		if(parameter.partnerWebsite.trim() === ''){
-			partner.toggleModal('“公司主页”为空，请完成！');
+			util.toggleModal('“合作方名称”为空，请完成！');
 			return;
 		}
 
+		var type = $('.editWrapper').data('type'); // type: 0新建合作方 1修改合作方
+		if (type === '0') { // 新建合作方
+			if(parameter.partnerWebsite.trim() === ''){
+				util.toggleModal('“公司主页”为空，请完成！');
+				return;
+			}
+		}
+
+		// if(parameter.partnerContactName.trim() === ''){
+		// 	util.toggleModal('“联系人”为空，请完成！');
+		// 	return;
+		// }
+		// if(parameter.partnerContactPhone.trim() === ''){
+		// 	util.toggleModal('“联系电话”为空，请完成！');
+		// 	return;
+		// }
+		// if(parameter.partnerContactEmail.trim() === ''){
+		// 	util.toggleModal('“联系邮箱”为空，请完成！');
+		// 	return;
+		// }
 
 		// LTadmin.doAjaxRequest(url,parameter,function(data){
 		// 	var obj = JSON.parse(data);
 		// 	console.log(obj);
 		// 	if(obj.status==1){
-		// 		partner.toggleModal(obj.statusMsg);
+		// 		util.toggleModal(obj.statusMsg);
 		// 		partner.refreshTable();//刷新表格数据
 		// 		$('.tableWrapper').show();
 		// 		$('.editWrapper').hide();
@@ -117,14 +117,12 @@ var partner = {
 		// 		$('#partnerDomain').val('');
 		// 		return;
 		// 	}else{
-		// 		partner.toggleModal(obj.statusMsg);
+		// 		util.toggleModal(obj.statusMsg);
 		// 		return;
 		// 	}
 		// },false);
 
-		var type = $('.editWrapper').data('type')
-		if (type === '0') {
-			// 新建合作方
+		if (type === '0') { // 新建合作方
 			url = ajaxUrl.partnerUrls.createPartnerUrl;
 			call = 'Partner.add'
 			param = {
@@ -136,8 +134,7 @@ var partner = {
 				partnerContactEmail: parameter.partnerContactEmail,
 				partnerWebsite: parameter.partnerWebsite
 			}
-		} else if (type === '1') {
-			// 修改合作方
+		} else if (type === '1') { // 修改合作方
 			url = ajaxUrl.partnerUrls.updatePartnerUrl;
 			call = 'Partner.update'
 			param = {
@@ -153,7 +150,7 @@ var partner = {
 		}
 		LTadmin.doAjaxRequestSign(url, call, param, function(data) {
 			var obj = JSON.parse(data)
-			partner.toggleModal(obj.returnMsg)
+			util.toggleModal(obj.returnMsg)
 			// if (obj.returnCode === '000000') {
 			// } else {}
 		})
@@ -174,7 +171,7 @@ var partner = {
 		// 		$('#partnerContactEmail').val(partner.partnerContactEmail);
 		// 		$('#partnerDomain').val(partner.partnerDomain);
 		// 	}else{
-		// 		partner.toggleModal(obj.statusMsg);
+		// 		util.toggleModal(obj.statusMsg);
 		// 		return;
 		// 	}
 		// });
@@ -203,7 +200,7 @@ var partner = {
 				$('#partnerContactEmail').val(partnerInfo.partnerContactEmail);
 				// $('#partnerDomain').val(partnerInfo.partnerWebsite);
 			} else {
-				partner.toggleModal(obj.returnMsg)
+				util.toggleModal(obj.returnMsg)
 			}
 		})
 	},
@@ -215,7 +212,7 @@ var partner = {
 				var partners = obj.partners;
 				$('#table').bootstrapTable('load', partners);
 			}else{
-				partner.toggleModal(obj.statusMsg);
+				util.toggleModal(obj.statusMsg);
 				return;
 			}
 		},false);
@@ -238,7 +235,7 @@ var partner = {
 					});
 					$('#table').bootstrapTable('load', partners);
 				} else {
-					partner.toggleModal(obj.returnMsg);
+					util.toggleModal(obj.returnMsg);
 					return;
 				}
 			})
@@ -280,7 +277,6 @@ var partner = {
 	        formatNoMatches: function(){return '无符合条件的记录';},
 	        onSearch : function(){
 				// 当搜索表格时触发
-				console.log('当搜索表格时触发')
 			},
 	        // onRefresh : function(){ partner.refreshTable(); },
 	        onRefresh : function(){
@@ -288,7 +284,6 @@ var partner = {
 			},
 	        onLoadSuccess : function(){
 				// 远程数据加载成功时触发成功
-				console.log('远程数据加载成功时触发成功')
 			}
 	    });
 	}
@@ -316,10 +311,10 @@ window.eidtThePartnerEvents = {
 		$('#partnerId').val(row.partnerId)
     }
 };
-function cooperateTypeFormatter(value,row,index){
-	var type = value!=undefined?value:'-';
-	return [
-		'<a class="viewCooperateType" href="javascript:;">'+type+'</a>'
-	].join();
-}
+// function cooperateTypeFormatter(value,row,index){
+// 	var type = value!=undefined?value:'-';
+// 	return [
+// 		'<a class="viewCooperateType" href="javascript:;">'+type+'</a>'
+// 	].join();
+// }
 /* 表格格式化函数 end */

@@ -3,6 +3,7 @@
 		<div id="toolbar" class="btn-group">
 		    <button id="getOnLine" type="button" class="btn btn-default">已上线</button>
 		    <button id="getOffLine" type="button" class="btn btn-default">未上线</button>
+		    <button id="getAll" type="button" class="btn btn-default">全部</button>
 		    <button id="addApp" type="button" class="btn btn-default">添加应用</button>
 		</div>
         <table id="table"></table>
@@ -18,20 +19,20 @@
 					<p>创建应用</p>
 				</div>
 			</li>
-			<li data-target="step2" class="">
+			<li data-target="step2" class="last">
 				<span></span>
 				<div>
 					<p>2</p>
 					<p>完善信息</p>
 				</div>
 			</li>
-			<li data-target="step3" class="last">
+			<!-- <li data-target="step3" class="last">
 				<span></span>
 				<div>
 					<p>3</p>
 					<p>提交审核</p>
 				</div>
-			</li>
+			</li> -->
 		</ul>
 		<div class="steps">
 			<div id="step1" class="step1">
@@ -485,7 +486,7 @@
 					</ul>
 				</div> -->
 			</div>
-			<div id="step3" class="step3" style="display: none;">
+			<!-- <div id="step3" class="step3" style="display: none;">
 				<div class="stepContent">
 					<p class="title"><span class="red">效果预览</span></p>
 					<ul class="iframeWrapper">
@@ -497,7 +498,7 @@
 						</li>
 					</ul>
 				</div>
-			</div>
+			</div> -->
 		</div>
 		<div class="btnGroup">
 			<div class="agreenment">
@@ -512,20 +513,4 @@
 			</div>
 		</div>
 	</div>
-	<!-- 模态框（Modal） -->
-	<div class="modal fade  bs-example-modal-sm" id="appModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	    <div class="modal-dialog modal-sm">
-	        <div class="modal-content">
-	            <!-- <div class="modal-header">
-	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-	                <h4 class="modal-title" id="myModalLabel"></h4>
-	            </div> -->
-	            <div class="modal-body"></div>
-	            <div class="modal-footer">
-	                <button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
-	            </div>
-	        </div><!-- /.modal-content -->
-	    </div><!-- /.modal-dialog -->
-	</div>
-	<!-- /.modal -->
 </div>

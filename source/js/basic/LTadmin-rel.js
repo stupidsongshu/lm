@@ -17,7 +17,7 @@ var miniSPA = {
     changeURL : function(){
         var url = location.hash.replace('#','');
         if(url === ''){
-            url = 'home';
+            url = 'app';
         }
         if(!window[url]){
             url = 'notfound';
@@ -33,7 +33,6 @@ var miniSPA = {
             }else{
                 settings.contentWrapper.innerHTML = page;
                 miniSPA.initFunc(url);
-
             }
         });
     },
@@ -170,20 +169,22 @@ var ajaxUrl = {
         loginUrl: ajaxUrlFlag.getDomain() + '/lm/c/i' // 登录
     },
     appUrls : {
-        "listProductUrl"         : ajaxUrlFlag.getDomain()+'/lm/c/i',//产品列表url,
-        "createAppUrl"           : ajaxUrlFlag.getDomain()+'/lm/c/i',//创建应用url,
-        "updateProductFee"       : ajaxUrlFlag.getDomain()+'/lm/c/i',//更新合作产品额度费率,
-        "createProductUrl"       : ajaxUrlFlag.getDomain()+'/llm/cp/createProduct',//创建产品url,
-        "updateProductUrl"       : ajaxUrlFlag.getDomain()+'/llm/cp/updateProduct',//修改产品url
+        "listProductUrl"           : ajaxUrlFlag.getDomain()+'/lm/c/i',//获取产品列表url,
+        "listProductRankUrl"       : ajaxUrlFlag.getDomain()+'/lm/c/i',//获取全部产品排序,
+        "listProductUpdateRankUrl" : ajaxUrlFlag.getDomain()+'/lm/c/i',//更新产品排序,
+        "createAppUrl"             : ajaxUrlFlag.getDomain()+'/lm/c/i',//创建应用url,
+        "updateProductFee"         : ajaxUrlFlag.getDomain()+'/lm/c/i',//更新合作产品额度费率,
+        "createProductUrl"         : ajaxUrlFlag.getDomain()+'/llm/cp/createProduct',//创建产品url,
+        "updateProductUrl"         : ajaxUrlFlag.getDomain()+'/llm/cp/updateProduct',//修改产品url
         // "createProductDetailUrl" : ajaxUrlFlag.getDomain()+'/llm/cp/createProductDetail',//创建产品明细url
         // "updateProductDetailUrl" : ajaxUrlFlag.getDomain()+'/llm/cp/updateProductDetail',//修改产品明细url
-        "updateCharacterUrl"     : ajaxUrlFlag.getDomain()+'/lm/c/i',//更新产品特性信息
-        "updateApplyUrl"         : ajaxUrlFlag.getDomain()+'/lm/c/i',//更新产品申请信息
+        "updateCharacterUrl"       : ajaxUrlFlag.getDomain()+'/lm/c/i',//更新产品特性信息
+        "updateApplyUrl"           : ajaxUrlFlag.getDomain()+'/lm/c/i',//更新产品申请信息
         // "getAProductInfoUrl"     : ajaxUrlFlag.getDomain()+'/llm/cp/findProduct',//获取某个产品所有信息url
-        "getAProductInfoUrl"     : ajaxUrlFlag.getDomain()+'/lm/c/i',//合作方信息获取
-        "setProductStatusUrl"    : ajaxUrlFlag.getDomain()+'/llm/cp/updateProductStatus',//设置产品状态url
-
-        "getPropertyConfigUrl"      : ajaxUrlFlag.getDomain()+'/lm/c/i', //系统参数
+        "getAProductInfoUrl"       : ajaxUrlFlag.getDomain()+'/lm/c/i',//合作方信息获取
+        "updateProductStatusUrl"   : ajaxUrlFlag.getDomain()+'/lm/c/i',//更新产品状态url
+        "updateProductShowUrl"   : ajaxUrlFlag.getDomain()+'/lm/c/i',//更新产品特定展示状态url
+        "getPropertyConfigUrl"     : ajaxUrlFlag.getDomain()+'/lm/c/i', //系统参数
     },
     partnerUrls : {
         "listPartnerUrl"     : ajaxUrlFlag.getDomain()+'/lm/c/i',//获取所有合作方url,
@@ -201,7 +202,5 @@ var ajaxUrl = {
         "setBannerStatusUrl" : ajaxUrlFlag.getDomain()+'/llm/banner/findBanner'//设置banner状态url
     },
     uploadFileUrl : ajaxUrlFlag.getDomain()+'/lm/c/f',//文件上传url
-    // uploadFileUrl : 'http://192.168.199.142:8080/lm/c/f',//文件上传url
-    // loginUrl : ajaxUrlFlag.getDomain()+'/llm/login/login',//文件上传url
-    forgetPwd : ajaxUrlFlag.getDomain()+'/llm/login/fgetPwd'//文件上传url
+    forgetPwd : ajaxUrlFlag.getDomain()+'/llm/login/fgetPwd'
 }
