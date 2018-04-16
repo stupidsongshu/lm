@@ -13,11 +13,11 @@ function statusStyle(value,row,index){
 function toggleProductStatusFormatter(value,row,index){
 	if (row.productStatus === 0) {        // 已下线
 		return [
-			'<a class="toggleTheApp" style="color: gray;" href="javascript:;"><img style="width:26px;height:26px;" src="source/image/app/offline.png">已下线</a>'
+			'<a class="toggleTheApp" style="color: gray;" href="javascript:;"><img style="width:26px;height:26px;" src="source/image/app/offline.png"> 已下线</a>'
 		].join('');
 	} else if (row.productStatus === 1) { // 已上线
 		return [
-			'<a class="toggleTheApp" style="color: #1afa29;" href="javascript:;"><img style="width:26px;height:26px;" src="source/image/app/online.png">已上线</a>'
+			'<a class="toggleTheApp" style="color: #4db878;" href="javascript:;"><img style="width:26px;height:26px;" src="source/image/app/online.png"> 已上线</a>'
 		].join('');
 	}
 }
@@ -57,7 +57,7 @@ function labelTransform(value,row,index){
 function editAction(value,row,index){
 	return [
 		'<p class="action">',
-		'<a class="editTheApp" href="javascript:;"><i class="fa fa-pencil"></i>修改</a>',
+		'<a class="editTheApp" href="javascript:;"><i class="fa fa-pencil"></i> 修改</a>',
 		'</p>'
 	].join('');
 }
@@ -71,16 +71,16 @@ function editIsShow(value,row,index){
 
 	// 卡还王展示状态
 	if (khwShow === 0) {
-		arr.push('<a class="khwShow" href="javascript:;"><i class="glyphicon glyphicon-eye-close"></i>卡还王</a>')
+		arr.push('<a class="khwShow" href="javascript:;"><img style="width:26px;height:26px;" src="source/image/app/eye-close.png"> 卡还王</a>')
 	} else if (khwShow === 1) {
-		arr.push('<a class="khwShow" href="javascript:;"><i class="glyphicon glyphicon-eye-open"></i>卡还王</a>')
+		arr.push('<a class="khwShow" href="javascript:;"><img style="width:26px;height:17px;" src="source/image/app/eye-open.png"> 卡还王</a>')
 	}
 
 	// 乐贷款展示状态
 	if (ldkShow === 0) {
-		arr.push('<a class="ldkShow" href="javascript:;"><i class="glyphicon glyphicon-eye-close"></i>乐贷款</a>')
+		arr.push('<a class="ldkShow" href="javascript:;"><img style="width:26px;height:26px;" src="source/image/app/eye-close.png"> 乐贷款</a>')
 	} else if (ldkShow === 1) {
-		arr.push('<a class="ldkShow" href="javascript:;"><i class="glyphicon glyphicon-eye-open"></i>乐贷款</a>')
+		arr.push('<a class="ldkShow" href="javascript:;"><img style="width:26px;height:17px;" src="source/image/app/eye-open.png"> 乐贷款</a>')
 	}
 
 	arr.push('</p>')
@@ -90,8 +90,8 @@ function editIsShow(value,row,index){
 function editActionHasSort(value,row,index){
 	return [
 		'<p class="action">',
-        '<a class="stickTop"><i class="glyphicon glyphicon-arrow-up" aria-hidden="true"></i>置顶</a>',
-        '<a class="sortHandle"><i class="glyphicon glyphicon-resize-vertical" aria-hidden="true"></i>排序</a>',
+        '<a class="stickTop"><i class="glyphicon glyphicon-arrow-up" aria-hidden="true"></i> 置顶</a>',
+        '<a class="sortHandle"><i class="glyphicon glyphicon-resize-vertical" aria-hidden="true"></i> 排序</a>',
 		'</p>'
 	].join('');
 }

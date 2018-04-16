@@ -175,6 +175,7 @@
 .stepContent>ul>li>div>.input>input{
 	height: 3rem;
 	padding-left: 1rem;
+	margin-right: .5rem;
 	width: 80%;
 }
 .stepContent>ul>li>div>.input>select{
@@ -188,6 +189,15 @@
 	margin: .5rem;
 	padding: .5rem;
 	/* width: 18%; */
+	margin-right: .5rem;
+	font-size: 2rem;
+	line-height: 3rem;
+	text-align: center;
+	cursor: pointer;
+}
+.stepContent>ul>li>div>.input>.keywordAdd {
+	display: inline-block;
+	margin-right: .5rem;
 	font-size: 2rem;
 	line-height: 3rem;
 	text-align: center;
@@ -205,6 +215,7 @@
 	height: 3rem;
 	width: 22%;
 	max-width: 120px;
+	margin-right: 0.5rem;
 	margin-bottom: 0.5rem;
 	background: #fff;
 	color: #666;
@@ -228,7 +239,7 @@
 }
 .stepContent>ul>li>div>.star>i.active{color: #F09116;}
 .stepContent>ul>li>div>.keyInput{zoom: 1;}
-.stepContent>ul>li>div>.keyInput>.inputContent{
+.stepContent>ul>li .keyInput>.inputContent{
 	line-height: 3rem;
 	margin-right: .5rem;
 }

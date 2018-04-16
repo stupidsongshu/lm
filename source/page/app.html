@@ -318,8 +318,14 @@
 						<li>
 							<label for="" class="col-xs-12 col-sm-4 col-md-2">产品最佳特性标签</label>
 							<div class="col-xs-12 col-sm-8 col-md-10 input" id="select_character_label">
-								<div class="input">
+								<div class="input keyInput">
 									<!-- <input type="text" id="featureLabel" name="featureLabel" placeholder="填写标签"/> -->
+									
+									<div class="inputContent keyContent"></div>
+									<input type="text" class="keywordInput character_label_add" placeholder="填写关键字" />
+									<div class="keywordAdd"><i class="fa fa-plus-circle"></i></div>
+
+									
 								</div>
 								<div id="select_character_label_result"></div>
 							</div>
@@ -331,18 +337,22 @@
 									<div class="inputContent keyContent" id="featureKeywords">
 									</div>
 									<input type="text" id="productKeywordInput" name="productKeywordInput" placeholder="填写关键字" class="keywordInput" />
-									<span class="productKeywordAdd"><i class="fa fa-plus-circle"></i></span>
+									<div class="keywordAdd"><i class="fa fa-plus-circle"></i></div>
 								</div>
 							</div>
 						</li> -->
 						<li>
 							<label for="" class="col-xs-12 col-sm-4 col-md-2">产品适用人群</label>
 							<div class="col-xs-12 col-sm-8 col-md-10" id="suitableRole">
-								<div class="input">
+								<div class="input keyInput">
 									<!-- <button value="all">全适用</button>
 									<button value="student">学生</button>
 									<button value="officialWorker">工薪族</button>
 									<button value="professional">自由职业</button> -->
+
+									<div class="inputContent keyContent"></div>
+									<input type="text" class="keywordInput suit_role_add" placeholder="填写关键字" />
+									<div class="keywordAdd"><i class="fa fa-plus-circle"></i></div>
 								</div>
 								<div id="select_suit_role_result"></div>
 							</div>
@@ -363,10 +373,7 @@
 							<label for="" class="col-xs-12 col-sm-4 col-md-2">产品特性状态</label>
 							<div class="col-xs-12 col-sm-8 col-md-10">
 								<div class="input" id="featureState">
-									<button value="hot">HOT</button>
-									<button value="fast">FAST</button>
-									<button value="low">LOW</button>
-									<button value="none">NONE</button>
+									<button value="hot">HOT</button><button value="fast">FAST</button><button value="low">LOW</button><button value="none">NONE</button>
 								</div>
 							</div>
 						</li>
@@ -416,9 +423,13 @@
 									<div class="inputContent keyContent" id="applyKeywords">
 									</div>
 									<input type="text" id="productKeywordInput" name="productKeywordInput" placeholder="填写关键字" class="keywordInput" />
-									<span class="productKeywordAdd"><i class="fa fa-plus-circle"></i></span>
+									<div class="keywordAdd"><i class="fa fa-plus-circle"></i></div>
 								</div> -->
-								<div class="input"></div>
+								<div class="input keyInput">
+									<div class="inputContent keyContent"></div>
+									<input type="text" class="keywordInput apply_condition_add" placeholder="填写关键字" />
+									<div class="keywordAdd"><i class="fa fa-plus-circle"></i></div>
+								</div>
 								<div id="select_apply_condition_result"></div>
 							</div>
 						</li>
@@ -429,9 +440,13 @@
 									<div class="inputContent keyContent" id="applyRequire">
 									</div>
 									<input type="text" id="productKeywordInput" name="productKeywordInput" placeholder="填写关键字" class="keywordInput" />
-									<span class="productKeywordAdd"><i class="fa fa-plus-circle"></i></span>
+									<div class="keywordAdd"><i class="fa fa-plus-circle"></i></div>
 								</div> -->
-								<div class="input"></div>
+								<div class="input keyInput">
+									<div class="inputContent keyContent"></div>
+									<input type="text" class="keywordInput apply_materials_add" placeholder="填写关键字" />
+									<div class="keywordAdd"><i class="fa fa-plus-circle"></i></div>
+								</div>
 								<div id="select_apply_material_result"></div>
 							</div>
 						</li>
