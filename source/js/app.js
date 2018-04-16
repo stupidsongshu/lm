@@ -74,14 +74,12 @@ var app = {
 
 		app.initFileUploadEvent();//初始化文件上传插件
 
-		// app.initProductFeature();//初始化产品特性
 		app.getPropertyConfig(app.initProductFeatureAndApplyInfo) //获取系统参数后初始化产品特性和申请信息
 
 		app.inputEvent();//初始化输入框事件
 
 		app.initStep2Event();//初始化步骤2
 
-		// app.save();//保存应用信息
 		// 更新合作产品额度费率
 		$('#step1 .btn-updateFee').on('click', function() {
 			app.updateFee()
@@ -121,9 +119,28 @@ var app = {
 		LTadmin.doAjaxRequestSign(ajaxUrl.appUrls.createAppUrl, call, param, function(data) {
 			var obj = JSON.parse(data);
 			if (obj.returnCode === '000000') {
+				console.log(obj)
 				cb && cb(obj.response)
 			} else {
 				util.toggleModal('获取系统参数失败');
+			}
+		})
+	},
+	// 添加系统参数取值
+	addPropertyValue: function(property, propertyValue, cb) {
+		var call = 'Property.addPropertyValue'
+		var userInfo = JSON.parse(sessionStorage.userInfo)
+		var param = {
+			account: userInfo.account,
+			token: userInfo.token,
+			property: property,
+			propertyValue: propertyValue
+		}
+		LTadmin.doAjaxRequestSign(ajaxUrl.appUrls.addPropertyConfigUrl, call, param, function(data) {
+			var obj = JSON.parse(data)
+			util.toggleModal(obj.returnMsg);
+			if (obj.returnCode === '000000') {
+				cb && cb()
 			}
 		})
 	},
@@ -665,6 +682,7 @@ var app = {
 			}
 		})
 	},
+	// 重置表单
 	reset : function(){
 		// 3个步骤收起来
 		$('.stepContent:not(.step1Content) .title').removeClass('active').next().slideUp();
@@ -688,11 +706,6 @@ var app = {
 		$('#instalPeriodList').val('');
 		$('input[name=instalReturnType]').attr('checked', false);
 
-		// $('#creLineRangeEx').val('');
-		// $('#interestRateEx').val('');
-		
-		// $('#featureKeywords').empty();
-		// $('#featureLabel').val('');
 		// 产品特性
 		$('#select_character_label .input').children('button').removeClass('selected');
 		$('#select_character_label_result').empty();
@@ -720,22 +733,8 @@ var app = {
 
 		$('#applyRequire .input').children('button').removeClass('selected');
 		$('#select_apply_material_result').empty();
-
-		// $('#scoreRank').val('');
-		// $('#requireScore').val('');
-		// $('#interestRateScore').val('');
-		// $('#throughRate').val('');
-		// $('#visitNum').val('');
-		// $('#loanNum').val('');
-		
-		// $('#selectResult').empty();
-		// $('#applyKeywords').empty();
-		// $('#applyRequire').empty();
-		// $('#applyStrategy').val('');
-		// $('#averageAuditTime').val('');
-		// $('#averageAdvanceTime').val('');
-		// $('#productDescription').val('');
 	},
+	// 设置表单
 	setTheAppInfo : function(obj){
 		var productInfo = obj.product;
 		var detailInfo = obj.list;
@@ -875,11 +874,17 @@ var app = {
 	// 初始化产品特性和申请信息
 	initProductFeatureAndApplyInfo : function (data) {
 		// 重置
-		$('#select_character_label .input').children('button').removeClass('selected');
-		$('#suitableRole .input').children('button').removeClass('selected');
-		// $('#select_apply_process .input').children('span').removeClass('selected');
-		$('#applyKeywords .input').children('button').removeClass('selected');
-		$('#applyRequire .input').children('button').removeClass('selected');
+		$('#select_character_label .input').empty()
+		$('#select_character_label_result').empty()
+
+		$('#suitableRole .input').empty()
+		$('#select_suit_role_result').empty()
+
+		$('#applyKeywords .input').empty()
+		$('#select_apply_condition_result').empty()
+
+		$('#applyRequire .input').empty()
+		$('#select_apply_material_result').empty()
 
 		var character_label = [];  // 产品最佳特性标签
 		var suit_role       = [];  // 产品适用人群
@@ -906,78 +911,6 @@ var app = {
 			}
 		})
 
-		// 添加标签
-		$('.keyContent').on('click','i',function () {
-			$(this).parent().remove();
-		});
-		$('.keywordAdd').on('click',function(){
-			$(this).hide().siblings('input').show().focus();
-		});
-		$('.keywordInput').on('blur',function(){
-			$(this).val('');
-			$(this).hide().siblings('.keywordAdd').show();
-		});
-		$('.keywordInput').on('keyup',function(event){
-			if(event.keyCode == 13 ){
-				var value = $(this).val().trim();
-				$(this).val('');
-				$(this).hide().siblings('.keywordAdd').show();
-				if (value!='') {
-					// var _html = '<span>'+value+'<i class="fa fa-minus-circle"></i></span>';
-					// $(this).prev('.keyContent').append(_html);
-					if ($(this).hasClass('character_label_add')) { // 添加产品最佳特性标签
-						addPropertyValue('character_label', value, function() {
-							app.getPropertyConfig(app.initProductFeatureAndApplyInfo)
-						})
-						return
-					}
-					if ($(this).hasClass('suit_role_add')) { // 添加产品适用人群
-						addPropertyValue('suit_role', value, function() {
-							app.getPropertyConfig(app.initProductFeatureAndApplyInfo)
-						})
-						return
-					}
-					if ($(this).hasClass('apply_condition_add')) { // 添加申请条件
-						addPropertyValue('apply_condition', value, function() {
-							app.getPropertyConfig(app.initProductFeatureAndApplyInfo)
-						})
-						return
-					}
-					if ($(this).hasClass('apply_materials_add')) { // 添加申请材料
-						addPropertyValue('apply_materials', value, function() {
-							app.getPropertyConfig(app.initProductFeatureAndApplyInfo)
-						})
-						return
-					}
-					
-				}
-			}
-		});
-
-		// 添加系统参数取值
-		function addPropertyValue(property, propertyValue, cb) {
-			var call = 'Property.addPropertyValue'
-			var userInfo = JSON.parse(sessionStorage.userInfo)
-			var param = {
-				account: userInfo.account,
-				token: userInfo.token,
-				property: property,
-				propertyValue: propertyValue
-			}
-			LTadmin.doAjaxRequestSign(ajaxUrl.appUrls.addPropertyConfigUrl, call, param, function(data) {
-				var obj = JSON.parse(data)
-				console.log(obj);
-				util.toggleModal(obj.returnMsg);
-				if (obj.returnCode === '000000') {
-					// $('.tableWrapper').hide();
-					// $('.editWrapper').show();
-					// app.reset();//重置表单
-					// app.setTheAppInfo(obj.response);
-					cb && cb()
-				}
-			})
-		}
-
 		// 选择标签组合
 		function selectLabelGroup(parentNode, selectResultNode) {
 			// 增
@@ -999,12 +932,17 @@ var app = {
 			});
 		}
 
+		var str_add_label = `<div class="inputContent keyContent"></div>
+								<input type="text" class="keywordInput apply_condition_add" placeholder="填写关键字" />
+							<div class="keywordAdd"><i class="fa fa-plus-circle"></i></div>`
+
 		// 1.初始化产品特性
 		// 1.1初始化产品最佳特性标签
 		var str_character_label = '';
 		character_label.forEach(function(item) {
 			str_character_label += '<button value="'+ item +'">' + item + '</button> ';
 		})
+		str_character_label += str_add_label
 		$('#select_character_label .input').append(str_character_label);
 		selectLabelGroup('#select_character_label', '#select_character_label_result');
 
@@ -1013,6 +951,7 @@ var app = {
 		suit_role.forEach(function(item) {
 			str_suit_role += '<button value="'+ item +'">' + item + '</button> ';
 		})
+		str_suit_role += str_add_label
 		$('#suitableRole .input').append(str_suit_role);
 		selectLabelGroup('#suitableRole', '#select_suit_role_result');
 
@@ -1110,6 +1049,7 @@ var app = {
 		apply_condition.forEach(function(item) {
 			str_apply_condition += '<button value="'+ item +'">' + item + '</button> ';
 		})
+		str_apply_condition += str_add_label
 		$('#applyKeywords .input').append(str_apply_condition);
 		selectLabelGroup('#applyKeywords', '#select_apply_condition_result');
 
@@ -1118,8 +1058,57 @@ var app = {
 		apply_materials.forEach(function(item) {
 			str_apply_materials += '<button value="'+ item +'">' + item + '</button> ';
 		})
+		str_apply_materials += str_add_label
 		$('#applyRequire .input').append(str_apply_materials);
 		selectLabelGroup('#applyRequire', '#select_apply_material_result');
+
+		// 添加系统参数取值
+		$('.keyContent').on('click','i',function () {
+			$(this).parent().remove();
+		});
+		$('.keywordAdd').on('click',function(){
+			$(this).hide().siblings('input').show().focus();
+		});
+		$('.keywordInput').on('blur',function(){
+			$(this).val('');
+			$(this).hide().siblings('.keywordAdd').show();
+		});
+		$('.keywordInput').on('keyup',function(event){
+			if(event.keyCode == 13 ){
+				var value = $(this).val().trim();
+				$(this).val('');
+				$(this).hide().siblings('.keywordAdd').show();
+				if (value!='') {
+					// var _html = '<span>'+value+'<i class="fa fa-minus-circle"></i></span>';
+					// $(this).prev('.keyContent').append(_html);
+					if ($(this).hasClass('character_label_add')) { // 添加产品最佳特性标签
+						app.addPropertyValue('character_label', value, function() {
+							app.getPropertyConfig(app.initProductFeatureAndApplyInfo)
+						})
+						return
+					}
+					if ($(this).hasClass('suit_role_add')) { // 添加产品适用人群
+						app.addPropertyValue('suit_role', value, function() {
+							app.getPropertyConfig(app.initProductFeatureAndApplyInfo)
+						})
+						return
+					}
+					if ($(this).hasClass('apply_condition_add')) { // 添加申请条件
+						app.addPropertyValue('apply_condition', value, function() {
+							app.getPropertyConfig(app.initProductFeatureAndApplyInfo)
+						})
+						return
+					}
+					if ($(this).hasClass('apply_materials_add')) { // 添加申请材料
+						app.addPropertyValue('apply_materials', value, function() {
+							app.getPropertyConfig(app.initProductFeatureAndApplyInfo)
+						})
+						return
+					}
+					
+				}
+			}
+		});
 	},
 	initPartners : function () {
 		var call = 'Partner.list'
@@ -1303,8 +1292,8 @@ var app = {
 			if (obj.returnCode === '000000') {
 				obj.response.forEach(function(item) {
 					var platformShow = {
-						khwShow: '0',
-						ldkShow: '0'
+						khwShow: 0,
+						ldkShow: 0
 					}
 					if (item.list !== undefined) {
 						item.list.forEach(function(listItem) {
