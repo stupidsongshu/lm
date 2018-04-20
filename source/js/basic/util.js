@@ -68,6 +68,7 @@ function editIsShow(value,row,index){
 	// khwShow为undefined或0时表示在卡还王上不展示，为1时表示在卡还王上展示
 	var khwShow = parseInt(row.platformShow.khwShow === undefined ? 0 : row.platformShow.khwShow)
 	var ldkShow = parseInt(row.platformShow.ldkShow === undefined ? 0 : row.platformShow.ldkShow)
+	var yydShow = parseInt(row.platformShow.yydShow === undefined ? 0 : row.platformShow.yydShow)
 
 	// 卡还王展示状态
 	if (khwShow === 0) {
@@ -81,6 +82,13 @@ function editIsShow(value,row,index){
 		arr.push('<a class="ldkShow" href="javascript:;"><img style="width:26px;height:26px;" src="source/image/app/eye-close.png"> 乐贷款</a>')
 	} else if (ldkShow === 1) {
 		arr.push('<a class="ldkShow" href="javascript:;"><img style="width:26px;height:17px;" src="source/image/app/eye-open.png"> 乐贷款</a>')
+	}
+
+	// 乐贷款展示状态
+	if (yydShow === 0) {
+		arr.push('<a class="yydShow" href="javascript:;"><img style="width:26px;height:26px;" src="source/image/app/eye-close.png"> 又一贷</a>')
+	} else if (yydShow === 1) {
+		arr.push('<a class="yydShow" href="javascript:;"><img style="width:26px;height:17px;" src="source/image/app/eye-open.png"> 又一贷</a>')
 	}
 
 	arr.push('</p>')
