@@ -1,16 +1,17 @@
 <div class="container-fluid appPage">
 	<div class="tableWrapper wrap">
 		<div id="toolbar" class="btn-group">
-		    <button id="getOnLine" type="button" class="btn btn-default">已上线</button>
-		    <button id="getOffLine" type="button" class="btn btn-default">未上线</button>
-		    <button id="getAll" type="button" class="btn btn-default">全部</button>
-		    <button id="addApp" type="button" class="btn btn-default">添加应用</button>
+			<button id="getOnLine" type="button" class="btn btn-default">已上线</button>
+			<button id="getOffLine" type="button" class="btn btn-default">未上线</button>
+			<button id="getAll" type="button" class="btn btn-default">全部</button>
+			<button id="addApp" type="button" class="btn btn-default">添加应用</button>
 		</div>
-        <table id="table"></table>
+		<table id="table"></table>
 	</div>
 	<div class="editWrapper wrap" data-type="0">
 		<div class="toolsbar">
-			<span class="showAppList"><i class="fa fa-arrow-left" aria-hidden="true"></i>返回应用列表</span>
+			<span class="showAppList">
+				<i class="fa fa-arrow-left" aria-hidden="true"></i>返回应用列表</span>
 		</div>
 		<ul class="progressView">
 			<li data-target="step1" class="first active current-step">
@@ -37,13 +38,15 @@
 		<div class="steps">
 			<div id="step1" class="step1">
 				<div class="stepContent step1Content">
-					<p class="title"><span class="red">基本信息</span></p>
+					<p class="title">
+						<span class="red">基本信息</span>
+					</p>
 					<ul>
 						<li>
 							<label for="" class="need col-xs-12 col-sm-3 col-md-2">产品名称</label>
 							<div class="col-xs-12 col-sm-9 col-md-7">
 								<div class="input">
-									<input type="text" id="productName" name="productName" placeholder="请输入产品名称"/>
+									<input type="text" id="productName" name="productName" placeholder="请输入产品名称" />
 									<!-- <span><i class="fa fa-check-circle" aria-hidden="true"></i></span> -->
 								</div>
 								<p>已签署合同或已上线产品不能修改产品名称</p>
@@ -53,7 +56,7 @@
 							<label for="" class="need col-xs-12 col-sm-3 col-md-2">产品包名</label>
 							<div class="col-xs-12 col-sm-9 col-md-7">
 								<div class="input">
-									<input type="text" id="productPackageName" name="productPackageName" placeholder="请输入产品包名"/>
+									<input type="text" id="productPackageName" name="productPackageName" placeholder="请输入产品包名" />
 								</div>
 							</div>
 						</li>
@@ -101,7 +104,9 @@
 					</ul>
 				</div>
 				<div class="stepContent">
-					<p class="title"><span class="blue">图标与安装包</span></p>
+					<p class="title">
+						<span class="blue">图标与安装包</span>
+					</p>
 					<ul>
 						<li>
 							<label for="" class="need col-xs-12 col-sm-3 col-md-2">上传图标</label>
@@ -114,10 +119,14 @@
 									<div class="drop_area" id="drap_img">将图片拖到这上传</div>
 								</div>
 								<div class="img_info">
-									<img id="smallImg" src="" alt=""/>
+									<img id="smallImg" src="" alt="" />
 									<div>
-										<p>文件名称：<span class="img_name"></span></p>
-										<p>上传进度：<span class="img_progress"></span></p>
+										<p>文件名称：
+											<span class="img_name"></span>
+										</p>
+										<p>上传进度：
+											<span class="img_progress"></span>
+										</p>
 									</div>
 									<input type="hidden" name="productIconPath" id="productIconPath" />
 								</div>
@@ -135,8 +144,12 @@
 								</div>
 								<div class="img_info">
 									<div>
-										<p>文件名称：<span class="apk_name"></span></p>
-										<p>上传进度：<span class="apk_progress"></span></p>
+										<p>文件名称：
+											<span class="apk_name"></span>
+										</p>
+										<p>上传进度：
+											<span class="apk_progress"></span>
+										</p>
 									</div>
 									<input type="hidden" name="productApkPath" id="productApkPath" />
 								</div>
@@ -145,7 +158,9 @@
 					</ul>
 				</div>
 				<div class="stepContent">
-					<p class="title"><span class="red">利率分期额度</span></p>
+					<p class="title">
+						<span class="red">利率分期额度</span>
+					</p>
 					<ul>
 						<li>
 							<label for="" class="need col-xs-12 col-sm-3 col-md-2">产品最小额度</label>
@@ -177,7 +192,7 @@
 							<label for="" class="need col-xs-12 col-sm-3 col-md-2">产品利率</label>
 							<div class="col-xs-12 col-sm-9 col-md-7">
 								<div class="input">
-									<input type="number" name="interestRate" id="interestRate"  placeholder="请输入产品利率，如0.36">
+									<input type="number" name="interestRate" id="interestRate" placeholder="请输入产品利率，如0.36">
 								</div>
 							</div>
 						</li>
@@ -235,10 +250,12 @@
 					</ul>
 				</div>
 			</div>
-			<div id="step2" class="step2"  style="display: none;">
-				<input type="hidden" id="productId"/>
+			<div id="step2" class="step2" style="display: none;">
+				<input type="hidden" id="productId" />
 				<div class="stepContent">
-					<p class="title"><span class="yellow">产品特性</span></p>
+					<p class="title">
+						<span class="yellow">产品特性</span>
+					</p>
 					<ul>
 						<li>
 							<label for="" class="col-xs-12 col-sm-4 col-md-2">产品最佳特性标签</label>
@@ -270,7 +287,10 @@
 							<label for="" class="col-xs-12 col-sm-4 col-md-2">产品特性状态</label>
 							<div class="col-xs-12 col-sm-8 col-md-10">
 								<div class="input" id="featureState">
-									<button value="hot">HOT</button><button value="fast">FAST</button><button value="low">LOW</button><button value="none">NONE</button>
+									<button value="hot">HOT</button>
+									<button value="fast">FAST</button>
+									<button value="low">LOW</button>
+									<button value="none">NONE</button>
 								</div>
 							</div>
 						</li>
@@ -280,7 +300,9 @@
 					</ul>
 				</div>
 				<div class="stepContent">
-					<p class="title"><span class="blue">申请信息</span></p>
+					<p class="title">
+						<span class="blue">申请信息</span>
+					</p>
 					<ul>
 						<!-- <li>
 							<label for="" class="need col-xs-12 col-sm-3 col-md-2">产品申请流程</label>
@@ -349,7 +371,7 @@
 		</div>
 		<div class="btnGroup">
 			<div class="agreenment">
-				<input type="checkbox" name="agree1" id="agree1"/>
+				<input type="checkbox" name="agree1" id="agree1" />
 				<label for="agree1">同意平台为我们产品提供</label>
 				<span>《最终用户协议》</span>
 			</div>

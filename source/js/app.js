@@ -275,10 +275,6 @@ var app = {
 			util.toggleModal('“产品分期类型”是必填项，请完成！');
 			return;
 		}
-		if(parameter.instalCycles==-1){
-			util.toggleModal('“产品分期间隔”是必填项，请完成！');
-			return;
-		}
 		if(parameter.instalPeriodList === ''){
 			util.toggleModal('“产品分期期数”是必填项，请完成！');
 			return;
@@ -519,13 +515,10 @@ var app = {
 			"account"            : userInfo.account,
 			"token"              : userInfo.token
 		};
-		// console.log(parameter);
 		LTadmin.doAjaxRequestSign(url, call, parameter, function(data) {
 			var obj = JSON.parse(data);
 			console.log(obj);
 			util.toggleModal(obj.returnMsg);
-			if (obj.returnCode === '000000') {
-			} else {}
 		})
 	},
 	// 切换产品上下线状态
@@ -937,7 +930,6 @@ var app = {
 			});
 		}
 
-		
 		function keywordAddFlag(className) {
 			return '<div class="inputContent keyContent"></div>\
 						<input type="text" class="keywordInput '+ className +'" placeholder="填写关键字" />\
@@ -1086,7 +1078,6 @@ var app = {
 				$(this).val('');
 				$(this).hide().siblings('.keywordAdd').show();
 				if (value!='') {
-					console.log($(this))
 					// var _html = '<span>'+value+'<i class="fa fa-minus-circle"></i></span>';
 					// $(this).prev('.keyContent').append(_html);
 					if ($(this).hasClass('character_label_add')) { // 添加产品最佳特性标签
