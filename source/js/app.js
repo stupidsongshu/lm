@@ -8,20 +8,13 @@ var app = {
 
 		// 获取合作方全部信息后进行操作(初始化表格或刷新表格)
 		app.getProductList(function(products) {
-			// console.log(products)
+			console.log(products)
 			app.initTable(products)
 		})
 
 		//初始化添加应用按钮
 		$('#addApp').on('click',function(){
-			sessionStorage.removeItem('productId');//产品唯一Id
-			app.changeProduct()
-			app.reset();//重置表单
-			$('.tableWrapper').hide();
-			$('.editWrapper').show();
-			$('.editWrapper').data('type','0');
-			var title = '<a href="javascript:;" class="showAppList">应用列表</a> > 添加应用';
-			$('.current span').html(title);
+			app.addTheApp()
 		});
 		//初始化返回应用列表按钮
 		$('.main').on('click','.showAppList',function(){
@@ -29,8 +22,7 @@ var app = {
 			$('.editWrapper').hide();
 			$('.current span').html('应用列表');
 		});
-
-		//初始化添加应用
+		//初始化添加应用步骤
 		$('.stepContent:first').on('click','.title',function(){
 			$(this).toggleClass('active').next().slideToggle();
 		});
@@ -219,39 +211,17 @@ var app = {
 			"h5ApplyUrl"         : $('#h5ApplyUrl').val(),//产品H5申请链接
 			"productTypeId"      : $('#productType>option:selected').attr('value')//产品类型Id
 		};
-		// if(parameter.productName.trim() === ''){
-		// 	util.toggleModal('“产品名称”是必填项，请完成！');
-		// 	return;
-		// }
-		// if(parameter.packageName.trim() === ''){
-		// 	util.toggleModal('“产品包名”是必填项，请完成！');
-		// 	return;
-		// }
-		// if(parameter.productSubTitle.trim() === ''){
-		// 	util.toggleModal('“产品二级标题”是必填项，请完成！');
-		// 	return;
-		// }
-		if(parameter.partnerId === '请选择产品提供方'){
-			util.toggleModal('“产品提供方”是必填项，请完成！');
-			return;
-		}
-		// if(parameter.productTypeId === '请选择产品类型'){
-		// 	util.toggleModal('“产品类型”是必填项，请完成！');
-		// 	return;
-		// }
-		// if(parameter.h5ApplyUrl.trim() === ''){
-		// 	util.toggleModal('“H5注册链接”是必填项，请完成！');
-		// 	return;
-		// }
 
 		var call = 'Product.update'
 		var userInfo = JSON.parse(sessionStorage.userInfo)
+		var productId = sessionStorage.productId
 
 		var param = {
 			account: userInfo.account,
 			token: userInfo.token,
+			productId: productId,
 			// 产品包名
-			packageName: parameter.packageName,
+			// packageName: parameter.packageName,
 			// 合作方Id (string)
 			partnerId: parameter.partnerId,
 			// 产品名称
@@ -266,11 +236,8 @@ var app = {
 
 		LTadmin.doAjaxRequestSign(ajaxUrl.appUrls.updateAppUrl, call, param, function(data) {
 			var obj = JSON.parse(data);
-			console.log(obj)
 			util.toggleModal(obj.returnMsg);
 			if (obj.returnCode === '000000') {
-				// 产品唯一Id
-				// sessionStorage.productId = obj.response;
 				cb && cb()
 			}
 		})
@@ -284,7 +251,7 @@ var app = {
 			"interestRateType"   : parseInt($('#interestRateType>.active').attr('value')==undefined?-1:$('#interestRateType>.active').attr('value')),//产品利率类型
 			"interestRate"       : parseFloat($('#interestRate').val()==''?-1:$('#interestRate').val()),//产品利率
 			"instalType"         : parseInt($('#instalType>.active').attr('value')==undefined?-1:$('#instalType>.active').attr('value')),//产品分期类型
-			"instalPeriodList"   : $('#instalPeriodList').val(),//产品分期期数
+			"instalPeriodList"   : $('#instalPeriodList').val().trim().replace(/；/g, ';'),//产品分期期数(只能以数字开头和结尾,中间只能是英文分号和数字的组合)
 			"instalReturnType"   : parseInt($('input[name=instalReturnType]:checked').val()==undefined?-1:$('input[name=instalReturnType]:checked').val())//产品分期归还类型
 		};
 
@@ -308,13 +275,14 @@ var app = {
 			util.toggleModal('“产品分期类型”是必填项，请完成！');
 			return;
 		}
-		if(parameter.instalCycles==-1){
-			util.toggleModal('“产品分期间隔”是必填项，请完成！');
-			return;
-		}
-		if(parameter.instalPeriodList.trim() === ''){
+		if(parameter.instalPeriodList === ''){
 			util.toggleModal('“产品分期期数”是必填项，请完成！');
 			return;
+		}
+		// 校验产品分期期数(只能以数字开头和结尾,中间只能是英文分号和数字的组合)
+		if (!/^\d+(;\d+)*(\d+)?$/.test(parameter.instalPeriodList)) {
+			util.toggleModal('“产品分期期数”格式不正确')
+			return
 		}
 		if(parameter.instalReturnType === -1){
 			util.toggleModal('“产品分期归还类型”是必填项，请完成！');
@@ -361,6 +329,7 @@ var app = {
 		// 	}
 		// },async);
 
+		// console.log(parameter)
 		LTadmin.doAjaxRequestSign(url, call, parameter, function(data) {
 			var obj = JSON.parse(data);
 			util.toggleModal(obj.returnMsg);
@@ -546,13 +515,10 @@ var app = {
 			"account"            : userInfo.account,
 			"token"              : userInfo.token
 		};
-		// console.log(parameter);
 		LTadmin.doAjaxRequestSign(url, call, parameter, function(data) {
 			var obj = JSON.parse(data);
 			console.log(obj);
 			util.toggleModal(obj.returnMsg);
-			if (obj.returnCode === '000000') {
-			} else {}
 		})
 	},
 	// 切换产品上下线状态
@@ -585,6 +551,7 @@ var app = {
 		// khwShow为undefined或0时表示在卡还王上不展示，为1时表示在卡还王上展示
 		var khwShow = product.platformShow.khwShow === undefined ? 0 : product.platformShow.khwShow
 		var ldkShow = product.platformShow.ldkShow === undefined ? 0 : product.platformShow.ldkShow
+		var yydShow = product.platformShow.yydShow === undefined ? 0 : product.platformShow.yydShow
 
 		var url = ajaxUrl.appUrls.updateProductShowUrl
 		var call = 'Product.updateShow'
@@ -593,9 +560,38 @@ var app = {
 			account: userInfo.account,
 			token: userInfo.token,
 			productId: product.productId,
-			khwShow: khwShow,
-			ldkShow: ldkShow
+			// khwShow: khwShow,
+			// ldkShow: ldkShow,
+			// yydShow: yydShow
 		}
+
+		switch(platformName) {
+			case 'khw':
+				khwShow = parseInt(khwShow === 0 ? 1 : khwShow === 1 ? 0 : khwShow)
+				if (khwShow !== 0 && khwShow !== 1) {
+					util.toggleModal('服务器返回的参数khwShow不正确：' + khwShow)
+					return
+				}
+				param.khwShow = khwShow
+				break;
+			case 'ldk':
+				ldkShow = parseInt(ldkShow === 0 ? 1 : ldkShow === 1 ? 0 : ldkShow)
+				if (ldkShow !== 0 && ldkShow !== 1) {
+					util.toggleModal('服务器返回的参数ldkShow不正确：' + ldkShow)
+					return
+				}
+				param.ldkShow = ldkShow
+				break;
+			case 'yyd':
+				yydShow = parseInt(yydShow === 0 ? 1 : yydShow === 1 ? 0 : yydShow)
+				if (yydShow !== 0 && yydShow !== 1) {
+					util.toggleModal('服务器返回的参数yydShow不正确：' + yydShow)
+					return
+				}
+				param.yydShow = yydShow
+				break;
+		}
+
 		function updateShow(param) {
 			LTadmin.doAjaxRequestSign(url, call, param, function(data) {
 				var obj = JSON.parse(data)
@@ -605,61 +601,36 @@ var app = {
 						"index" : index,
 						"field" : 'platformShow',
 						"value" : {
-							khwShow: param.khwShow,
-							ldkShow: param.ldkShow
+							khwShow: khwShow,
+							ldkShow: ldkShow,
+							yydShow: yydShow,
 						}
 					});
 				}
 			})
 		}
 
-		switch(platformName) {
-			case 'khw':
-				param.khwShow = parseInt(khwShow === 0 ? 1 : khwShow === 1 ? 0 : khwShow)
-				if (param.khwShow !== 0 && param.khwShow !== 1) {
-					util.toggleModal('服务器返回的参数khwShow不正确：' + param.khwShow)
-					return
-				}
-				break;
-			case 'ldk':
-				param.ldkShow = parseInt(ldkShow === 0 ? 1 : ldkShow === 1 ? 0 : ldkShow)
-				if (param.ldkShow !== 0 && param.ldkShow !== 1) {
-					util.toggleModal('服务器返回的参数ldkShow不正确：' + param.ldkShow)
-					return
-				}
-				break;
-		}
-
 		// console.log(param)
 		updateShow(param)
 	},
-	// 创建应用 or 更新应用
-	changeProduct() {
-		if (!sessionStorage.productId) {
-			$('#step1 .btn-createApp').html('创建合作产品').on('click', function() {
-				app.createProduct(function() {
-					// 获取合作方全部信息后进行操作(初始化表格或刷新表格)
-					app.getProductList(function(products) {
-						// $('#table').bootstrapTable('filterBy', { rows:this.allData});
-						$('#table').bootstrapTable('load', products);
-					})
-				})
-			})
-		} else {
-			$('#step1 .btn-createApp').html('更新合作产品').on('click', function() {
-				app.updateProduct(function() {
-					// 获取合作方全部信息后进行操作(初始化表格或刷新表格)
-					app.getProductList(function(products) {
-						// $('#table').bootstrapTable('filterBy', { rows:this.allData});
-						$('#table').bootstrapTable('load', products);
-					})
-				})
-			})
-		}
+	// 添加应用
+	addTheApp: function() {
+		sessionStorage.removeItem('productId');//产品唯一Id
+		// 添加应用时重置产品包名只读状态
+		$('#productPackageName').attr('readonly', false)
+		app.reset();//重置表单
+		$('.tableWrapper').hide();
+		$('.editWrapper').show();
+		$('.editWrapper').data('type','0');
+		var title = '<a href="javascript:;" class="showAppList">应用列表</a> > 添加应用';
+		$('.current span').html(title);
+		app.changeProduct()
 	},
 	// 修改应用
 	editTheApp : function(productId){
 		sessionStorage.productId = productId
+		// 修改应用时不允许更改产品包名
+		$('#productPackageName').attr('readonly', true)
 		app.changeProduct()
 		// 获取产品相关信息
 		var call = 'Product.find'
@@ -681,6 +652,30 @@ var app = {
 				util.toggleModal(obj.returnMsg);
 			}
 		})
+	},
+	// 创建应用 or 更新应用 后刷新表格
+	changeProduct() {
+		if (!sessionStorage.productId) {
+			$('#step1 .btn-createApp').html('创建合作产品').unbind('click').on('click', function() {
+				app.createProduct(function() {
+					// 获取合作方全部信息后进行操作(初始化表格或刷新表格)
+					app.getProductList(function(products) {
+						// $('#table').bootstrapTable('filterBy', { rows:this.allData});
+						$('#table').bootstrapTable('load', products);
+					})
+				})
+			})
+		} else {
+			$('#step1 .btn-createApp').html('更新合作产品').unbind('click').on('click', function() {
+				app.updateProduct(function() {
+					// 获取合作方全部信息后进行操作(初始化表格或刷新表格)
+					app.getProductList(function(products) {
+						// $('#table').bootstrapTable('filterBy', { rows:this.allData});
+						$('#table').bootstrapTable('load', products);
+					})
+				})
+			})
+		}
 	},
 	// 重置表单
 	reset : function(){
@@ -880,6 +875,9 @@ var app = {
 		$('#suitableRole .input').empty()
 		$('#select_suit_role_result').empty()
 
+		$('#select_apply_process .input').empty()
+		$('#applyProcess').empty()
+
 		$('#applyKeywords .input').empty()
 		$('#select_apply_condition_result').empty()
 
@@ -932,17 +930,18 @@ var app = {
 			});
 		}
 
-		var str_add_label = `<div class="inputContent keyContent"></div>
-								<input type="text" class="keywordInput apply_condition_add" placeholder="填写关键字" />
-							<div class="keywordAdd"><i class="fa fa-plus-circle"></i></div>`
-
+		function keywordAddFlag(className) {
+			return '<div class="inputContent keyContent"></div>\
+						<input type="text" class="keywordInput '+ className +'" placeholder="填写关键字" />\
+					<div class="keywordAdd"><i class="fa fa-plus-circle"></i></div>'
+		}
 		// 1.初始化产品特性
 		// 1.1初始化产品最佳特性标签
 		var str_character_label = '';
 		character_label.forEach(function(item) {
 			str_character_label += '<button value="'+ item +'">' + item + '</button> ';
 		})
-		str_character_label += str_add_label
+		str_character_label += keywordAddFlag('character_label_add')
 		$('#select_character_label .input').append(str_character_label);
 		selectLabelGroup('#select_character_label', '#select_character_label_result');
 
@@ -951,7 +950,7 @@ var app = {
 		suit_role.forEach(function(item) {
 			str_suit_role += '<button value="'+ item +'">' + item + '</button> ';
 		})
-		str_suit_role += str_add_label
+		str_suit_role += keywordAddFlag('suit_role_add')
 		$('#suitableRole .input').append(str_suit_role);
 		selectLabelGroup('#suitableRole', '#select_suit_role_result');
 
@@ -1049,7 +1048,7 @@ var app = {
 		apply_condition.forEach(function(item) {
 			str_apply_condition += '<button value="'+ item +'">' + item + '</button> ';
 		})
-		str_apply_condition += str_add_label
+		str_apply_condition += keywordAddFlag('apply_condition_add')
 		$('#applyKeywords .input').append(str_apply_condition);
 		selectLabelGroup('#applyKeywords', '#select_apply_condition_result');
 
@@ -1058,7 +1057,7 @@ var app = {
 		apply_materials.forEach(function(item) {
 			str_apply_materials += '<button value="'+ item +'">' + item + '</button> ';
 		})
-		str_apply_materials += str_add_label
+		str_apply_materials += keywordAddFlag('apply_materials_add')
 		$('#applyRequire .input').append(str_apply_materials);
 		selectLabelGroup('#applyRequire', '#select_apply_material_result');
 
@@ -1241,12 +1240,10 @@ var app = {
 						$('#productApkPath').val(data.response);
 					}
 
-					app.createProduct(function() {
-						// 获取合作方全部信息后进行操作(初始化表格或刷新表格)
-						app.getProductList(function(products) {
-							// $('#table').bootstrapTable('filterBy', { rows:this.allData});
-							$('#table').bootstrapTable('load', products);
-						})
+					// 获取合作方全部信息后进行操作(初始化表格或刷新表格)
+					app.getProductList(function(products) {
+						// $('#table').bootstrapTable('filterBy', { rows:this.allData});
+						$('#table').bootstrapTable('load', products);
 					})
 				}
             }
@@ -1288,12 +1285,13 @@ var app = {
 		var products = []
 		LTadmin.doAjaxRequestSign(url, call, param, function(data){
 			var obj = JSON.parse(data)
-			// console.log(obj)
+			console.log(obj)
 			if (obj.returnCode === '000000') {
 				obj.response.forEach(function(item) {
 					var platformShow = {
 						khwShow: 0,
-						ldkShow: 0
+						ldkShow: 0,
+						yydShow: 0,
 					}
 					if (item.list !== undefined) {
 						item.list.forEach(function(listItem) {
@@ -1301,6 +1299,8 @@ var app = {
 								platformShow.khwShow = parseInt(listItem[1])
 							} else if (listItem[0] === 'ldk_show') {
 								platformShow.ldkShow = parseInt(listItem[1])
+							}  else if (listItem[0] === 'yyd_show') {
+								platformShow.yydShow = parseInt(listItem[1])
 							}
 						})
 					}
@@ -1391,5 +1391,8 @@ window.eidtTheAppEvents = {
 	},
 	'click .ldkShow' : function(e,value,row,index) {
 		app.toggleAppShow(row, index, 'ldk')
+	},
+	'click .yydShow' : function(e,value,row,index) {
+		app.toggleAppShow(row, index, 'yyd')
 	}
 };

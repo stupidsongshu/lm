@@ -146,8 +146,6 @@ miniSPA.ajaxRequest('source/page/404.html', 'GET','',function(status, partial){
 });
 
 
-
-
 var ajaxUrlFlag = {
     debug: true,
     debugDomain : 'http://test.yanmachina.com',
