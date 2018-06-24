@@ -1188,7 +1188,7 @@ var app = {
 		    var img = window.URL.createObjectURL(fileList[0]);
 		    //检测文件是不是图片
 	        if(fileList[0].type.indexOf('image')===-1){
-				app.toggleModal('您上传的不是图片！');
+				util.toggleModal('您上传的不是图片！');
 	            return false;
 	        }
         	$('#smallImg').attr('src',img);
@@ -1196,7 +1196,7 @@ var app = {
         }else{
         	//检测文件是不是apk文件
 	        if(fileList[0].name.indexOf('.apk')===-1){
-				app.toggleModal('您上传的不是apk文件！');
+				util.toggleModal('您上传的不是apk文件！');
 	            return false;
 	        }
 	        $('.apk_name').text(filename);
