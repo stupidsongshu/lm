@@ -16,10 +16,15 @@ var app = {
 		$('#addApp').on('click',function(){
 			app.addTheApp()
 		});
+		//初始化快速创建应用按钮
+		$('#fastCreat').on('click',function(){
+			app.fastCreatApp()
+		});
 		//初始化返回应用列表按钮
 		$('.main').on('click','.showAppList',function(){
 			$('.tableWrapper').show();
 			$('.editWrapper').hide();
+			$('#fastCreatWrapper').hide();
 			$('.current span').html('应用列表');
 		});
 		//初始化添加应用步骤
@@ -84,6 +89,15 @@ var app = {
 		$('#step2 .btn-updateApply').on('click', function() {
 			app.updateApply()
 		})
+
+		// 快速创建应用相关 start
+		$('#fastCreatWrapper .btn-updateFastCreateApp').on('click', function() {
+			app.updateFastCreateApp()
+		})
+		$('#interestRateTypeFastCreate,#instalTypeFastCreate').on('click','button',function(){
+			$(this).addClass('active').siblings('button').removeClass('active');
+		});
+		// 快速创建应用相关 end
 	},
 	inputEvent : function(){
 		$('.checkInput').on('keyup',function(){
@@ -93,7 +107,7 @@ var app = {
 		});
 	},
 	initStep2Event : function(){
-		$('#interestRateType,#instalType').on('click','button',function(){
+		$('#interestRateTypeFastCreat,#instalTypeFastCreat').on('click','button',function(){
 			$(this).addClass('active').siblings('button').removeClass('active');
 		});
 	},
@@ -625,6 +639,15 @@ var app = {
 		var title = '<a href="javascript:;" class="showAppList">应用列表</a> > 添加应用';
 		$('.current span').html(title);
 		app.changeProduct()
+	},
+	// 快速创建应用
+	fastCreatApp: function() {
+		$('.tableWrapper').hide();
+		$('.fastCreatWrapper').show();
+		var title = '<a href="javascript:;" class="showAppList">应用列表</a> > 快速创建';
+		$('.current span').html(title);
+		// 初始化文件上传插件
+		app.initFileUploadEventFastCreateApp();
 	},
 	// 修改应用
 	editTheApp : function(productId){
@@ -1207,14 +1230,14 @@ var app = {
 		var xhr = new XMLHttpRequest();
         xhr.upload.addEventListener("progress", function(e){
             if(e.lengthComputable) {
-                var percentage = Math.round((e.loaded * 100) / e.total)+'%';
-                console.log(percentage)
-                console.log(type)
-                if(type==1){
-	        		$('.img_progress').text(percentage);
-	        	}else{
-	        		$('.apk_progress').text(percentage);
-	        	}
+							var percentage = Math.round((e.loaded * 100) / e.total)+'%';
+							console.log(percentage)
+							console.log(type)
+							if(type==1){
+								$('.img_progress').text(percentage);
+							}else{
+								$('.apk_progress').text(percentage);
+							}
             }
         }, false);
 
@@ -1368,6 +1391,227 @@ var app = {
 		$('#getAll').on('click',function(){
 			$('#table').bootstrapTable('filterBy', null);
 		});
+	},
+	// 快速创建应用 FastCreateApp
+	updateFastCreateApp: function() {
+		var parameter = {
+			productName        : $('#productNameFastCreate').val(),//产品名称
+			productSubTitle    : $('#productSubTitleFastCreate').val(),//产品二级标题
+			h5ApplyUrl         : $('#h5ApplyUrlFastCreate').val(),//产品H5申请链接
+			productIconLink    : $('#productIconLinkFastCreate').val(),//图标链接
+			minCreLine         : parseInt($('#minCreLineFastCreate').val()==''?-1:$('#minCreLineFastCreate').val()),//产品最小额度
+			maxCreLine         : parseInt($('#maxCreLineFastCreate').val()==''?-1:$('#maxCreLineFastCreate').val()),//产品最大额度
+			interestRateType   : parseInt($('#interestRateTypeFastCreate>.active').attr('value')==undefined?-1:$('#interestRateTypeFastCreate>.active').attr('value')),//产品利率类型
+			interestRate       : parseFloat($('#interestRateFastCreate').val()==''?-1:$('#interestRateFastCreate').val()),//产品利率
+			instalType         : parseInt($('#instalTypeFastCreate>.active').attr('value')==undefined?-1:$('#instalTypeFastCreate>.active').attr('value')),//产品分期类型
+			instalPeriodList   : $('#instalPeriodListFastCreate').val().trim().replace(/；/g, ';'),//产品分期期数(只能以数字开头和结尾,中间只能是英文分号和数字的组合)
+			instalReturnType   : parseInt($('input[name=instalReturnType]:checked').val()==undefined?-1:$('input[name=instalReturnType]:checked').val())//产品分期归还类型
+		};
+		if(parameter.productName.trim() === ''){
+			util.toggleModal('“产品名称”是必填项，请完成！');
+			return;
+		}
+		if(parameter.productSubTitle.trim() === ''){
+			util.toggleModal('“产品二级标题”是必填项，请完成！');
+			return;
+		}
+		if(parameter.h5ApplyUrl.trim() === ''){
+			util.toggleModal('“H5注册链接”是必填项，请完成！');
+			return;
+		}
+		if(parameter.productIconLink === '') {
+			util.toggleModal('请上传产品图标！');
+			return;
+		}
+		if(parameter.minCreLine==-1){
+			util.toggleModal('“产品最小额度”是必填项，请完成！');
+			return;
+		}
+		if(parameter.maxCreLine==-1){
+			util.toggleModal('“产品最大额度”是必填项，请完成！');
+			return;
+		}
+		if(parameter.interestRateType==-1){
+			util.toggleModal('“产品利率类型”是必填项，请完成！');
+			return;
+		}
+		if(parameter.interestRate==-1){
+			util.toggleModal('“产品利率”是必填项，请完成！');
+			return;
+		}
+		if(parameter.instalType==-1){
+			util.toggleModal('“产品分期类型”是必填项，请完成！');
+			return;
+		}
+		if(parameter.instalPeriodList === ''){
+			util.toggleModal('“产品分期期数”是必填项，请完成！');
+			return;
+		}
+		// 校验产品分期期数(只能以数字开头和结尾,中间只能是英文分号和数字的组合)
+		if (!/^\d+(;\d+)*(\d+)?$/.test(parameter.instalPeriodList)) {
+			util.toggleModal('“产品分期期数”格式不正确')
+			return;
+		}
+		if(parameter.instalReturnType === -1){
+			util.toggleModal('“产品分期归还类型”是必填项，请完成！');
+			return;
+		}
+		var userInfo = JSON.parse(sessionStorage.userInfo);
+		parameter.account = userInfo.account;
+		parameter.token = userInfo.token;
+		console.log(parameter);
+		var url = ajaxUrl.fastCreateUrl;
+		var call = 'Product.fastCreate';
+
+		LTadmin.doAjaxRequestSign(url, call, parameter, function(data) {
+			var obj = JSON.parse(data);
+			console.log(obj);
+			util.toggleModal(obj.returnMsg);
+			if (obj.returnCode === '000000') {
+				window.location.reload();
+			}
+		})
+	},
+	initFileUploadEventFastCreateApp: function () {
+		//初始化页面拖拽
+		//阻止浏览器默认行
+		$(document).on({
+			dragleave:function(e){ e.preventDefault(); },   //拖离
+			drop:function(e){ e.preventDefault(); },        //拖后放
+			dragenter:function(e){ e.preventDefault(); },   //拖进
+			dragover:function(e){ e.preventDefault(); }     //拖来拖去
+		});
+		//拖拽图片上传
+		var drap_img = document.getElementById('drap_img_FastCreateApp'); //拖拽区域
+		drap_img.addEventListener("drop",function(e){
+			e.preventDefault(); //取消默认浏览器拖拽效果
+			var fileList = e.dataTransfer.files; //获取文件对象
+			app.initFileUploadFastCreateApp(fileList,1);
+		},false);
+		//选择图片上传
+		$('#imgFileFastCreateApp').on('change',function(e){
+			app.initFileUploadFastCreateApp(this.files,1);
+		});
+
+		// //拖拽apk上传
+		// var drap_apk = document.getElementById('drap_apk'); //拖拽区域
+		// drap_apk.addEventListener("drop",function(e){
+		// 	e.preventDefault(); //取消默认浏览器拖拽效果
+		// 	var fileList = e.dataTransfer.files; //获取文件对象
+		// 	app.initFileUploadFastCreateApp(fileList,2);
+		// },false);
+		// //选择apk上传
+		// $('#apkFile').on('change',function(e){
+		// 	app.initFileUploadFastCreateApp(this.files,2);
+		// });
+	},
+	initFileUploadFastCreateApp : function(fileList,type){
+		console.log(fileList);
+		//检测是否是拖拽文件到页面的操作
+		if(fileList[0].length == 0){
+			return false;
+		}
+		$('.img_name').text('');
+		$('.apk_name').text('');
+		$('.img_progress').text('');
+		$('.apk_progress').text('');
+
+		var filename = fileList[0].name; //文件名称
+		var filesize = Math.floor((fileList[0].size)/1024/1024);
+		if(filesize>10){
+			util.toggleModal('上传文件的大小不能超过10M！');
+				return false;
+			}
+		if(type==1){
+			//拖拉图片到浏览器，可以实现预览功能
+			var img = window.URL.createObjectURL(fileList[0]);
+			//检测文件是不是图片
+			if(fileList[0].type.indexOf('image')===-1){
+				util.toggleModal('您上传的不是图片！');
+				return false;
+			}
+			$('.previewImg').attr('src',img);
+			$('.img_name').text(filename);
+		}else{
+			//检测文件是不是apk文件
+			if(fileList[0].name.indexOf('.apk')===-1){
+			util.toggleModal('您上传的不是apk文件！');
+				return false;
+			}
+			$('.apk_name').text(filename);
+		}
+		//上传
+		app.uploadFastCreateApp(fileList[0],type);
+	},
+	uploadFastCreateApp: function(file,type){
+		var xhr = new XMLHttpRequest();
+		xhr.upload.addEventListener("progress", function(e){
+			if(e.lengthComputable) {
+				var percentage = Math.round((e.loaded * 100) / e.total)+'%';
+				console.log(percentage)
+				console.log(type)
+				if(type==1){
+					$('.img_progress').text(percentage);
+				}else{
+					$('.apk_progress').text(percentage);
+				}
+			}
+		}, false);
+
+		xhr.upload.addEventListener("load", function(e){
+			if(type==1){
+				$('.img_progress').text('100%');
+			}else{
+				$('.apk_progress').text('100%');
+			}
+		}, false);
+
+		xhr.open("POST", ajaxUrl.cacheFileUrl, true);
+		xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4 && xhr.status == 200) {
+				var data = JSON.parse(xhr.responseText);
+				console.log(data); // handle response.progress.style.display = "none";
+				util.toggleModal(data.returnMsg);
+				if (data.returnCode === '000000') {
+					if (type == 1) {
+						$('#productIconLinkFastCreate').val(data.response);
+					} else if (type == 2) {
+						$('#productApkPath').val(data.response);
+					}
+
+					// 获取合作方全部信息后进行操作(初始化表格或刷新表格)
+					// app.getProductList(function(products) {
+					// 	// $('#table').bootstrapTable('filterBy', { rows:this.allData});
+					// 	$('#table').bootstrapTable('load', products);
+					// })
+				}
+			}
+		};
+		var fd = new FormData();
+		var userInfo = JSON.parse(sessionStorage.userInfo);
+		var ua = ajaxUrl.ua;
+		var call = 'File.cacheFile';
+		var signKey = ajaxUrl.signKey;
+		var timestamp = new Date().getTime();
+		var sign = md5(ua + "&" + call + "&" + timestamp + "&" + signKey);
+		if(type==1){
+			fd.append("ua", ua);
+			fd.append("call", call);
+			fd.append("args", JSON.stringify({
+				// account: userInfo.account,
+				// token: userInfo.token,
+				// productId: sessionStorage.productId,
+				// fileType: 'icon'
+			}));
+			fd.append("sign", sign);
+			fd.append("timestamp", timestamp);
+			fd.append("cacheFile", file);
+		}else{
+			fd.append("cachefile", file);
+			fd.append("userName", sessionStorage.ldkusername);
+		}
+		xhr.send(fd);
 	}
 };
 

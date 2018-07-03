@@ -5,6 +5,7 @@
 			<button id="getOffLine" type="button" class="btn btn-default">未上线</button>
 			<button id="getAll" type="button" class="btn btn-default">全部</button>
 			<button id="addApp" type="button" class="btn btn-default">添加应用</button>
+			<button id="fastCreat" type="button" class="btn btn-default">快速创建</button>
 		</div>
 		<table id="table"></table>
 	</div>
@@ -369,17 +370,150 @@
 				</div>
 			</div> -->
 		</div>
+
 		<div class="btnGroup">
-			<div class="agreenment">
+			<!-- <div class="agreenment">
 				<input type="checkbox" name="agree1" id="agree1" />
 				<label for="agree1">同意平台为我们产品提供</label>
 				<span>《最终用户协议》</span>
-			</div>
+			</div> -->
 			<div class="control-btns">
 				<button class="btn-prev">上一步</button>
 				<!-- <button class="btn-save">保存</button> -->
 				<button class="btn-next">下一步</button>
 			</div>
+		</div>
+	</div>
+
+	<!-- 快速创建 -->
+	<div class="fastCreatWrapper wrap" id="fastCreatWrapper">
+		<div class="toolsbar">
+			<span class="showAppList">
+				<i class="fa fa-arrow-left" aria-hidden="true"></i>返回应用列表</span>
+		</div>
+
+		<div class="stepContent step1Content">
+			<p class="title">
+				<span class="red">基本信息</span>
+			</p>
+			<ul>
+				<li>
+					<label for="" class="need col-xs-12 col-sm-3 col-md-2">产品名称</label>
+					<div class="col-xs-12 col-sm-9 col-md-7">
+						<div class="input">
+							<input type="text" id="productNameFastCreate" name="productName" placeholder="请输入产品名称" />
+							<!-- <span><i class="fa fa-check-circle" aria-hidden="true"></i></span> -->
+						</div>
+						<p>已签署合同或已上线产品不能修改产品名称</p>
+					</div>
+				</li>
+				<li>
+					<label for="" class="need col-xs-12 col-sm-3 col-md-2">产品二级标题</label>
+					<div class="col-xs-12 col-sm-9 col-md-7">
+						<div class="input">
+							<input type="text" id="productSubTitleFastCreate" name="productSubTitle" placeholder="请输入产品二级标题" />
+						</div>
+					</div>
+				</li>
+				<li>
+					<label for="" class="need col-xs-12 col-sm-3 col-md-2">H5注册链接</label>
+					<div class="col-xs-12 col-sm-9 col-md-7">
+						<div class="input">
+							<input type="text" name="h5ApplyUrl" id="h5ApplyUrlFastCreate" placeholder="请输入H5注册链接">
+						</div>
+					</div>
+				</li>
+				<li>
+					<label for="" class="need col-xs-12 col-sm-3 col-md-2">上传图标</label>
+					<div class="col-xs-12 col-sm-9 col-md-7">
+						<div class="img_upload">
+							<a href="javascript:;" class="select_img">
+								<i class="fa fa-plus" aria-hidden="true"></i>
+								<input type="file" name="cacheImgFile" id="imgFileFastCreateApp" />
+							</a>
+							<div class="drop_area" id="drap_img_FastCreateApp">将图片拖到这上传</div>
+						</div>
+						<div class="img_info">
+							<img class="previewImg" src="" alt="" />
+							<div>
+								<p>文件名称：
+									<span class="img_name"></span>
+								</p>
+								<p>上传进度：
+									<span class="img_progress"></span>
+								</p>
+							</div>
+							<input type="hidden" name="productIconLink" id="productIconLinkFastCreate" />
+						</div>
+					</div>
+				</li>
+				<li>
+					<label for="" class="need col-xs-12 col-sm-3 col-md-2">产品最小额度</label>
+					<div class="col-xs-12 col-sm-9 col-md-7">
+						<div class="input">
+							<input type="number" name="minCreLine" id="minCreLineFastCreate" placeholder="单位：元">
+						</div>
+					</div>
+				</li>
+				<li>
+					<label for="" class="need col-xs-12 col-sm-3 col-md-2">产品最大额度</label>
+					<div class="col-xs-12 col-sm-9 col-md-7">
+						<div class="input">
+							<input type="number" name="maxCreLine" id="maxCreLineFastCreate" placeholder="单位：元">
+						</div>
+					</div>
+				</li>
+				<li>
+					<label for="" class="need col-xs-12 col-sm-3 col-md-2">产品利率类型</label>
+					<div class="col-xs-12 col-sm-9 col-md-7">
+						<div class="input" id="interestRateTypeFastCreate">
+							<button value="0">日</button>
+							<button value="1">月</button>
+							<button value="2">年</button>
+						</div>
+					</div>
+				</li>
+				<li>
+					<label for="" class="need col-xs-12 col-sm-3 col-md-2">产品利率</label>
+					<div class="col-xs-12 col-sm-9 col-md-7">
+						<div class="input">
+							<input type="number" name="interestRate" id="interestRateFastCreate" placeholder="请输入产品利率，如0.36">
+						</div>
+					</div>
+				</li>
+				<li>
+					<label for="" class="need col-xs-12 col-sm-3 col-md-2">产品分期类型</label>
+					<div class="col-xs-12 col-sm-9 col-md-7">
+						<div class="input" id="instalTypeFastCreate">
+							<button value="0">日</button>
+							<button value="1">月</button>
+							<button value="2">年</button>
+						</div>
+					</div>
+				</li>
+				<li>
+					<label for="" class="need col-xs-12 col-sm-3 col-md-2">产品分期期数</label>
+					<div class="col-xs-12 col-sm-9 col-md-7">
+						<div class="input">
+							<input type="text" name="instalPeriodList" id="instalPeriodListFastCreate" placeholder="分期期数列表数组以逗号分隔，如 3;6;12">
+						</div>
+					</div>
+				</li>
+				<li>
+					<label for="" class="need col-xs-12 col-sm-3 col-md-2">分期归还类型</label>
+					<div class="col-xs-12 col-sm-9 col-md-7">
+						<div class="input radio">
+							<input type="radio" name="instalReturnType" id="instalReturnType3" value="0" />
+							<label for="instalReturnType3">一次性归还</label>
+							<input type="radio" name="instalReturnType" id="instalReturnType4" value="1" />
+							<label for="instalReturnType4">按分期类型归还</label>
+						</div>
+					</div>
+				</li>
+				<li class="text-center">
+					<button class="btn btn-primary btn-app-step btn-updateFastCreateApp" style="float: none;">保存</button>
+				</li>
+			</ul>
 		</div>
 	</div>
 </div>

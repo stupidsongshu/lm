@@ -53,6 +53,11 @@
 	display: none;
 	overflow-y: hidden;
 }
+.fastCreatWrapper{
+	padding: 1.5rem;
+	display: none;
+	overflow-y: hidden;
+}
 .progressView{
 	width: 100%;
 	zoom: 1;
@@ -121,6 +126,7 @@
 .partnerPage .stepContent>ul,
 .bannerPage .stepContent>ul{display: block;}
 .stepContent>ul{display: none;}
+.fastCreatWrapper .stepContent>ul{display: block;}
 .partnerPage .stepContent>.title{background:#EEEEEE;}
 .stepContent>.title{
 	padding: 1rem 2rem;

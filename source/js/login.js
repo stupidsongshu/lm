@@ -1,12 +1,12 @@
 window.onload = function () {
 	var login = document.getElementById('login');
-	var forget = document.getElementById('forget');
+	// var forget = document.getElementById('forget');
 	login.onclick = function(){
 		LOGIN.login();//登录
 	}
-	forget.onclick = function(){
-		LOGIN.forget();//忘记密码
-	}
+	// forget.onclick = function(){
+	// 	LOGIN.forget();//忘记密码
+	// }
 }
 
 var LOGIN = {

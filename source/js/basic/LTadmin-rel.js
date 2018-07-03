@@ -187,5 +187,7 @@ var ajaxUrl = {
         "updatePartnerUrl"         : ajaxUrlFlag.debug ? ajaxUrlFlag.getDomain()+'/lm/c/i' : ajaxUrlFlag.getDomain(),//修改合作方
         "getAPartnerInfoUrl"       : ajaxUrlFlag.debug ? ajaxUrlFlag.getDomain()+'/lm/c/i' : ajaxUrlFlag.getDomain()//获取某个合作方
     },
-    uploadFileUrl                  : ajaxUrlFlag.debug ? ajaxUrlFlag.getDomain()+'/lm/c/f' : 'http://file.yanmachina.com'//文件上传
+    fastCreateUrl                  : ajaxUrlFlag.debug ? ajaxUrlFlag.getDomain()+'/lm/c/i' : ajaxUrlFlag.getDomain(),//快速创建应用
+    uploadFileUrl                  : ajaxUrlFlag.debug ? ajaxUrlFlag.getDomain()+'/lm/c/f' : 'http://file.yanmachina.com',//文件上传
+    cacheFileUrl                   : ajaxUrlFlag.debug ? ajaxUrlFlag.getDomain()+'/lm/c/cacheFile' : 'http://106.14.152.47:8081/lm/c/cacheFile'//文件上传--快速创建应用
 }
