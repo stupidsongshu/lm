@@ -147,7 +147,7 @@ miniSPA.ajaxRequest('source/page/404.html', 'GET','',function(status, partial){
 
 
 var ajaxUrlFlag = {
-    debug: true,
+    debug: false,
     debugDomain : 'http://test.yanmachina.com',
     payGateDomain : 'http://lm.yanmachina.com',
     getDomain : function(){
@@ -189,5 +189,12 @@ var ajaxUrl = {
     },
     fastCreateUrl                  : ajaxUrlFlag.debug ? ajaxUrlFlag.getDomain()+'/lm/c/i' : ajaxUrlFlag.getDomain(),//快速创建应用
     uploadFileUrl                  : ajaxUrlFlag.debug ? ajaxUrlFlag.getDomain()+'/lm/c/f' : 'http://file.yanmachina.com',//文件上传
-    cacheFileUrl                   : ajaxUrlFlag.debug ? ajaxUrlFlag.getDomain()+'/lm/c/cacheFile' : 'http://106.14.152.47:8081/lm/c/cacheFile'//文件上传--快速创建应用
+    cacheFileUrl                   : ajaxUrlFlag.debug ? ajaxUrlFlag.getDomain()+'/lm/c/cacheFile' : 'http://106.14.152.47:8081/lm/c/cacheFile',//文件上传--快速创建应用
+    pvUvUrls: {
+        list7DayHourPVUV:   ajaxUrlFlag.debug ? ajaxUrlFlag.getDomain()+'/lm/c/i' : ajaxUrlFlag.getDomain(),
+        list7DayActionPVUV: ajaxUrlFlag.debug ? ajaxUrlFlag.getDomain()+'/lm/c/i' : ajaxUrlFlag.getDomain(),
+        listRecentGeneral:  ajaxUrlFlag.debug ? ajaxUrlFlag.getDomain()+'/lm/c/i' : ajaxUrlFlag.getDomain(),
+        list7DayFrom:       ajaxUrlFlag.debug ? ajaxUrlFlag.getDomain()+'/lm/c/i' : ajaxUrlFlag.getDomain(),
+        list7DayPlatform:   ajaxUrlFlag.debug ? ajaxUrlFlag.getDomain()+'/lm/c/i' : ajaxUrlFlag.getDomain(),
+    }
 }
