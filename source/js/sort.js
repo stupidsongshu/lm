@@ -4,8 +4,7 @@ var sort = {
     init: function() {
 		$('.current span').text(sort.page);
 		$('.menuList>li[data-target=sort]').addClass('active').siblings('li').removeClass('active');
-
-        sort.initTable();
+			sort.initTable();
     },
     initTable : function(){
 		var url = ajaxUrl.appUrls.listProductRankUrl
@@ -33,23 +32,23 @@ var sort = {
 		}
 
 		$('#table').bootstrapTable({
-	        // idField: "id",
+			// idField: "id",
 			url: url,
 			method: 'post',
 			ajax: bootstrapTableAjax,
 			ajaxOptions: ajaxOptions,
-	        cache: false,
-	        striped: true,
-	        sortable : true,
+			cache: false,
+			striped: true,
+			sortable : true,
 			showExport: true,
 			columns: [
-	            {field:"productId",    title:"id",      width:"100",align:"center",valign:"middle",visible:true},
+				{field:"productId",    title:"id",      width:"100",align:"center",valign:"middle",visible:true},
 				{field:"productName",  title:"应用名称", width:"100",align:"left",  valign:"middle",formatter:"nameTransform"},
 				{field:"productStatus",title:"状态",     width:"100",align:"center",valign:"middle",formatter:"toggleProductStatusFormatter",cellStyle:"statusStyle"},
-	            {field:"action",       title:"操作",     width:"100",align:"center",valign:"middle",formatter:"editActionHasSort",events:"eidtTheAppEvents"}
-	        ],
-	        formatNoMatches: function(){return '无符合条件的记录';},
-	        onLoadSuccess : function(){
+				{field:"action",       title:"操作",     width:"100",align:"center",valign:"middle",formatter:"editActionHasSort",events:"eidtTheAppEvents"}
+			],
+			formatNoMatches: function(){return '无符合条件的记录';},
+			onLoadSuccess : function(){
 				sort.sortableFn(document.getElementById('table').getElementsByTagName('tbody')[0]);
 
 				// 置顶排序

@@ -1,12 +1,16 @@
 var pvuv = {
   partial : 'source/page/pvuv.html',
   page : 'pvuv',
+  productRankData: [],
   init: function() {
     pvuv.listRecentGeneral();
     pvuv.list7DayHourPVUV();
-    pvuv.list7DayActionPVUV();
+    // pvuv.list7DayActionPVUV();
     pvuv.list7DayFrom();
     // pvuv.list7DayPlatform();
+    pvuv.productRank(function(arr) {
+      pvuv.list7DayActionPVUV(arr);
+    });
   },
   selectDayOptions: function(el, data) {
     var tpl = '';
@@ -110,7 +114,8 @@ var pvuv = {
           feature: {
             dataView: {
               show: true
-            }
+            },
+            saveAsImage: {}
           }
         },
         legend: {
@@ -135,7 +140,7 @@ var pvuv = {
       };
     }
   },
-  list7DayActionPVUV: function() {
+  list7DayActionPVUV: function(productRankArr) {
     var list7DayActionPVUV = echarts.init(document.getElementById('list7DayActionPVUV'));
     var list7DayActionPVUVSelect = $('#list7DayActionPVUVSelect');
     var list7DayActionPVUVData = {};
@@ -170,7 +175,7 @@ var pvuv = {
       for (var i = 0, len = list7DayActionPVUVData.length; i < len; i++) {
         if (list7DayActionPVUVData[i].dayTime === dayTime) {
           for (var j = 0, length = list7DayActionPVUVData[i].actionPvUvList.length; j < length; j++) {
-            option.xAxis.data.push(list7DayActionPVUVData[i].actionPvUvList[j].action);
+            option.xAxis.data.push(productRankArr[list7DayActionPVUVData[i].actionPvUvList[j].action - 1]);
             option.series[0].data.push(list7DayActionPVUVData[i].actionPvUvList[j].pv);
             option.series[1].data.push(list7DayActionPVUVData[i].actionPvUvList[j].uv);
           }
@@ -199,7 +204,8 @@ var pvuv = {
           feature: {
             dataView: {
               show: true
-            }
+            },
+            saveAsImage: {}
           }
         },
         legend: {
@@ -287,7 +293,8 @@ var pvuv = {
           feature: {
             dataView: {
               show: true
-            }
+            },
+            saveAsImage: {}
           }
         },
         legend: {
@@ -405,5 +412,26 @@ var pvuv = {
     function resetOption() {
       option = chartOption;
     }
+  },
+  productRank: function(cb) {
+    var url = ajaxUrl.appUrls.listProductRankUrl
+		var call = 'Product.rank'
+		var userInfo = JSON.parse(sessionStorage.userInfo)
+		var ajaxOptions = {
+			account: userInfo.account,
+			token: userInfo.token
+		}
+    LTadmin.doAjaxRequestSign(url, call, ajaxOptions, function(data){
+      var obj = JSON.parse(data);
+      console.log('productRank', obj)
+      if (obj.returnCode === '000000') {
+        obj.response.forEach(function(item) {
+          pvuv.productRankData.push(item.productName);
+        })
+        cb && cb(pvuv.productRankData);
+      } else {
+        alert(obj.returnMsg);
+      }
+    });
   }
 };
