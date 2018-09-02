@@ -1618,12 +1618,12 @@ var app = {
 /* 编辑某个应用 <span class="notice">修改应用信息</span>*/
 window.eidtTheAppEvents = {
 	// 修改产品
-    'click .editTheApp' : function(e,value,row,index){
-        console.log(row);
+	'click .editTheApp' : function(e,value,row,index){
+		console.log(row);
 		var title = '<a href="javascript:;" class="showAppList">应用列表</a> > 编辑应用';
 		$('.current span').html(title);
 		$('.editWrapper').data('type','1');
-        app.editTheApp(row.productId);
+		app.editTheApp(row.productId);
 	},
 	// 切换产品上下线状态
 	'click .toggleTheApp' : function(e,value,row,index) {

@@ -47,6 +47,10 @@ var pvuv = {
     var list7DayHourPVUVSelect = $('#list7DayHourPVUVSelect');
     var list7DayHourPVUVData = {};
 
+    window.onresize = function() {
+      list7DayHourPVUV.resize();
+    }
+
     var option = {};
 
     var url = ajaxUrl.pvUvUrls.list7DayHourPVUV;
@@ -145,6 +149,10 @@ var pvuv = {
     var list7DayActionPVUVSelect = $('#list7DayActionPVUVSelect');
     var list7DayActionPVUVData = {};
 
+    window.onresize = function() {
+      list7DayActionPVUV.resize();
+    }
+
     var option = {};
 
     var url = ajaxUrl.pvUvUrls.list7DayActionPVUV;
@@ -234,6 +242,10 @@ var pvuv = {
     var list7DayFrom = echarts.init(document.getElementById('list7DayFrom'));
     var list7DayFromSelect = $('#list7DayFromSelect');
     var list7DayFromData = {};
+
+    window.onresize = function() {
+      list7DayFrom.resize();
+    }
 
     var option = {};
 

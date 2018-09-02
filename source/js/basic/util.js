@@ -84,7 +84,7 @@ function editIsShow(value,row,index){
 		arr.push('<a class="ldkShow" href="javascript:;"><img style="width:26px;height:17px;" src="source/image/app/eye-open.png"> 乐贷款</a>')
 	}
 
-	// 乐贷款展示状态
+	// 又一贷展示状态
 	if (yydShow === 0) {
 		arr.push('<a class="yydShow" href="javascript:;"><img style="width:26px;height:26px;" src="source/image/app/eye-close.png"> 又一贷</a>')
 	} else if (yydShow === 1) {
@@ -106,7 +106,7 @@ function editActionHasSort(value,row,index){
 /* 表格格式化函数：end */
 
 var util = {
-    toggleModal : function(msg){
+	toggleModal : function(msg){
 		$('.modal-body').text(msg);
 		$('#appModal').modal();
 	},

@@ -116,7 +116,6 @@ var LTadmin = {
 					mode: CryptoJS.mode.CBC,
 					padding: CryptoJS.pad.Pkcs7
 				});
-				// var json = JSON.parse(CryptoJS.enc.Utf8.stringify(decrypted).toString())
     			callback(CryptoJS.enc.Utf8.stringify(decrypted).toString());
     		},
     		error : function(err){

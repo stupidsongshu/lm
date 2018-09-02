@@ -20,56 +20,17 @@ var LOGIN = {
 	},
 	enterEvent : function(event){
 		if(event.keyCode){
-            if(event.keyCode != 13){
-                return;
-            }
-            LOGIN.login();
-        }else{
-            if(event.keyCode != 13){
-                return;
-            }
-            LOGIN.login();
-        }
+			if(event.keyCode != 13){
+				return;
+			}
+			LOGIN.login();
+		}else{
+			if(event.keyCode != 13){
+				return;
+			}
+			LOGIN.login();
+		}
 	},
-	// login : function(){
-	// 	var userName = document.getElementById('userName');
-	// 	var password = document.getElementById('password');
-	// 	var paramter = "userName="+userName.value+"&password="+password.value;
-	// 	if(userName.value.trim() == ''){
-	// 		LOGIN.toggleTips('用户名不能为空');
-	// 		return ;
-	// 	}
-	// 	if(password.value.trim() == ''){
-	// 		LOGIN.toggleTips('密码不能为空');
-	// 		return ;
-	// 	}
-
-	// 	var xhr;
-	// 	if(window.XMLHttpRequest){
-	// 	    xhr = new XMLHttpRequest();	 //IE7+,Firefox,Chrome,Opera,Safari浏览器执行代码
-	// 	}else{
-	// 	    xhr = new ActiveXObject("Microsoft.XMLHTTP");// IE6, IE5 浏览器执行代码
-	// 	}
-	// 	xhr.open("POST",ajaxUrl.loginUrl,true);
-	// 	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	// 	xhr.send(paramter);
-	// 	xhr.onreadystatechange = function(){
-	//   		if (xhr.readyState==4 && xhr.status==200){
-	//   			var obj = JSON.parse(xhr.responseText);
-	//   			if(obj.status==1){
-	//   				sessionStorage.ldkusername = userName.value;
-	//   				LOGIN.toggleTips('登录成功');
-	//   				window.location.href = '../../index.html';
-	//   			}else if(obj.status==-1 || obj.status==-2){
-	//   				LOGIN.toggleTips('用户名不存在');
-	//   			}else if(obj.status==-3){
-	//   				LOGIN.toggleTips('密码错误');
-	//   			}
-	//     	}else{
-	//     		LOGIN.toggleTips('服务器错误');
-	//     	}
-  	// 	}
-	// },
 	login() {
 		var url = ajaxUrl.loginUrls.loginUrl
 		var call = "Account.login"
@@ -89,19 +50,6 @@ var LOGIN = {
 			account: userName.value,
 			password: password.value
 		}
-
-		// LTadmin.doAjaxRequestSign(url, call, param, function(data) {
-		// 	data = JSON.parse(data)
-		// 	if (data.returnCode === '000000') {
-		// 		LOGIN.toggleTips('登录成功');
-		// 		sessionStorage.ldkusername = userName.value;
-		// 		sessionStorage.userInfo = JSON.stringify(data.response)
-		// 		window.location.href = '../../index.html';
-		// 	} else {
-		// 		LOGIN.toggleTips(data.returnMsg);
-		// 	}
-		// })
-
 
 		LTadmin.doAjaxRequestSign(url, call, param, function(data) {
 			data = JSON.parse(data)
