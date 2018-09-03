@@ -6,11 +6,11 @@ var pvuv = {
     pvuv.listRecentGeneral();
     pvuv.list7DayHourPVUV();
     // pvuv.list7DayActionPVUV();
-    pvuv.list7DayFrom();
-    // pvuv.list7DayPlatform();
     pvuv.productRank(function(arr) {
       pvuv.list7DayActionPVUV(arr);
     });
+    pvuv.list7DayFrom();
+    pvuv.list7DayPlatform();
   },
   selectDayOptions: function(el, data) {
     var tpl = '';
@@ -35,7 +35,7 @@ var pvuv = {
                     '<td>' + item.pv + '</td>' +
                     '<td>' + item.uv + '</td>' +
                     '<td>' + item.newUser + '</td>' +
-                    '<td>' + (item.newUser/item.uv).toFixed(4)*100 + '%</td>' +
+                    '<td>' + (item.newUser/item.uv*100).toFixed(2) + '%</td>' +
                   '</tr>'
         })
         listRecentGeneral.append(tpl);
@@ -327,9 +327,19 @@ var pvuv = {
     }
   },
   list7DayPlatform: function() {
+    // 定义数据
+    // var legendData = ['count'];
+    // var seriesData = [
+    //   {
+    //     name: 'count',
+    //     type: 'line',
+    //     data: []
+    //   }
+    // ];
+
     var chartOption = {
       title: {
-        text: '最近7天-访问来源'
+        text: '最近7天-list7DayPlatform'
       },
       tooltip: {
         trigger: 'axis',
@@ -344,11 +354,12 @@ var pvuv = {
         feature: {
           dataView: {
             show: true
-          }
+          },
+          saveAsImage: {}
         }
       },
       legend: {
-        data:['count']
+        data: ['count']
       },
       xAxis: {
         data: []
@@ -358,11 +369,7 @@ var pvuv = {
         {
           name: 'count',
           type: 'line',
-          data: [
-            {
-
-            }
-          ]
+          data: []
         }
       ]
     };
@@ -373,7 +380,7 @@ var pvuv = {
     var selectDay = $('#' + call + 'Select');
     var chartData = {};
 
-    // var option = {};
+    chartOption = JSON.parse(JSON.stringify(chartOption))
 
     var url = ajaxUrl.pvUvUrls[call];
     LTadmin.doAjaxRequestSign(url, 'PVUV.' + call, {}, function(data) {
@@ -385,7 +392,7 @@ var pvuv = {
         chartData.sort(function(a, b) {
           return new Date(b.dayTime).getTime() - new Date(a.dayTime).getTime();
         })
-        // 初始化选择控件 绑定事件
+        // 初始化近7天选择按钮 绑定事件
         pvuv.selectDayOptions(selectDay, chartData);
         selectDay.find('button').on('click', function() {
           renderOneDay($(this).attr('data-dayTime'));
@@ -397,26 +404,32 @@ var pvuv = {
     })
 
     var firstListName = ''; // 数据一级列表名
+    var field = {}
     if (call === 'list7DayPlatform') {
       firstListName = 'platformCountList';
+      field.xAxis = 'platform'
+      field.yAxis = 'count'
     }
 
-    // 保存并清空echarts option series
-    var series = chartOption.series[0].data[0]
+    var option = null;
     function renderOneDay(dayTime) {
       console.log('dayTime:', dayTime);
       resetOption(); // 重置echarts option
 
-      // for (var i = 0, len = chartData.length; i < len; i++) {
-      //   if (chartData[i].dayTime === dayTime) {
-      //     // console.log(chartData[i][firstListName])
-      //     for (var j = 0, length = chartData[i][firstListName].length; j < length; j++) {
-      //       chartOption.xAxis.data.push(chartData[i][firstListName][j].platform);
-      //       chartOption.series[0].data.push(chartData[i][firstListName][j].count);
-      //     }
-      //     break;
-      //   }
-      // }
+      for (var i = 0, l = chartData.length; i < l; i++) {
+        if (chartData[i].dayTime === dayTime) {
+          // console.log(chartData[i][firstListName])
+          for (var j = 0, length = chartData[i][firstListName].length; j < length; j++) {
+            // chartOption.xAxis.data.push(chartData[i][firstListName][j].platform);
+            // chartOption.series[0].data.push(chartData[i][firstListName][j].count);
+            chartOption.xAxis.data.push(chartData[i][firstListName][j][field.xAxis]);
+            for (var k = 0, seriesLen = chartOption.series.length; k < seriesLen; k++) {
+              chartOption.series[k].data.push(chartData[i][firstListName][j][field.yAxis]);
+            }
+          }
+          break;
+        }
+      }
 
       chart.setOption(chartOption);
     }
